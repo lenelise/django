@@ -19,10 +19,11 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     '''
-        API endpoint to view or edit users
+        API endpoint to view or edit users.
+        Only allowed if you are authenticated as admin (staff). 
     '''
 
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [permissions.AllowAny]
-    #permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]

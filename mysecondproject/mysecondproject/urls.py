@@ -1,5 +1,6 @@
 
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from expensetracker.views import HomeView
 from rest_framework import routers
@@ -12,6 +13,8 @@ router.register(r'users', CustomUserViewSet )
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),  # Built-in login view
+
 
     # 
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
