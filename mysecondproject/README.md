@@ -24,7 +24,8 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 ## To do: 
 1. add some open (does not need authentication) APIs (list all expenses) :white_check_mark:
 2. require login or some authentication to be able to use the api :white_check_mark:
-    a. only admin /staff can access user-api's
-3. only see the expenses you are the owner of (staff and non-staff)
+    - only admin /staff can access user-api's
+3. only see the expenses you are the owner of (staff and non-staff) :white_check_mark:
 4. staff user with the right permission can see all expenses and delete them 
 5. maybe create a permission so that staff users can see ALL expenses (if they have said permission)
+6. Need logout fucntionality for non-admin users (/logout). Right now they have no way of logging out :white_check_mark:
