@@ -12,11 +12,12 @@ router.register(r'users', CustomUserViewSet )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', HomeView.as_view(), name='home'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),  # Built-in login view
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),  # Built-in login view
 
 
-    # 
+ 
     #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
     #This is where my actual api endpoints are exposed: 

@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     "accounts",
     "expensetracker", 
     'rest_framework', 
-    'api'
+    'api',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
@@ -69,7 +71,7 @@ ROOT_URLCONF = 'mysecondproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,3 +138,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/login/'

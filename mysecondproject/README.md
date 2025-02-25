@@ -16,10 +16,15 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
     4. run migrations
     5. restart server and test it
 
+## API and restrictions:
+- you need to be logged in to access any of the APIs
+- only staff/admin users can access api/users
+- staff and non-staff users can both access api/expenses
 
-## Plan: 
+## To do: 
 1. add some open (does not need authentication) APIs (list all expenses) :white_check_mark:
 2. require login or some authentication to be able to use the api :white_check_mark:
     a. only admin /staff can access user-api's
-3. only see the expenses you are the owner of 
+3. only see the expenses you are the owner of (staff and non-staff)
 4. staff user with the right permission can see all expenses and delete them 
+5. maybe create a permission so that staff users can see ALL expenses (if they have said permission)

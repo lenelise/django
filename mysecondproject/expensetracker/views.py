@@ -7,4 +7,5 @@ from django.http import HttpResponse
 class HomeView(View):
     
     def get(self, request):
-        return HttpResponse("This will be the landing page.")
+        #return HttpResponse("This will be the landing page.")
+        return render(request, "home.html")
