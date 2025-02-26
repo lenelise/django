@@ -21,10 +21,15 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 - only staff/admin users can access api/users
 - staff and non-staff users can both access api/expenses
 
+## Swagger API documentation
+[Yet another swagger generator](https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart)
+
+Added the basics was easy :smile:
+
 ## To do: 
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 - make it so that admin users can edit ALL expenses regardless of owner
-
+- consider separating the different API endpoints into separate files, and collecting them all in API 
 
 ## Done: 
 -  add some open (does not need authentication) APIs (list all expenses) :white_check_mark:

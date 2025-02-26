@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'api',
     'crispy_forms',
     'crispy_bootstrap4',
+    'drf_yasg',
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
