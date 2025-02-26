@@ -147,3 +147,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 LOGOUT_REDIRECT_URL = "home" 
+
+
+SWAGGER_SETTINGS = {
+    'DISPLAY_OPERATION_ID': True,  # Ensure operation descriptions are shown directly,
+    'DEFAULT_MODEL_RENDERING': 'example'
+}

@@ -2,6 +2,8 @@ from rest_framework import viewsets,permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 
+from drf_yasg.utils import swagger_auto_schema
+
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseSerializer
 from accounts.models import CustomUser
@@ -30,9 +32,13 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             return Expense.objects.all()
     
-    #GET (overriding parent method to apply restrictions)
+    @swagger_auto_schema(
+        operation_description="Fetch expense data."        
+    )
     def list(self, request, *args, **kwargs):
-
+        '''
+            something something
+        '''
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
         if pk: 
@@ -47,7 +53,9 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-    #POST: (overriding parent method to apply restrictions)
+    @swagger_auto_schema(
+        operation_description="Create expense(s)."        
+    )    
     def create(self, request, *args, **kwargs):
         serializer = ExpenseSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
@@ -56,7 +64,9 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    #PUT: (overriding parent method to apply restrictions)
+    @swagger_auto_schema(
+        operation_description="Update existing expense data."        
+    )    
     def update(self, request, *args, **kwargs):
 
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
@@ -81,6 +91,9 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         
         
     #DELETE: (overriding parent method to apply restrictions)
+    @swagger_auto_schema(
+            operation_description="Remove an expense."        
+    )
     def destroy(self, *args, **kwargs):
         if self.request.user.is_staff: 
             return super().destroy(self.request,*args, **kwargs)

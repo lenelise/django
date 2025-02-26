@@ -12,15 +12,15 @@ from drf_yasg import openapi
 #For Swagger: 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Snippets API",
+      title="Mysecondproject API's",
       default_version='v1',
-      description="Test description",
-      terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="contact@snippets.local"),
-      license=openapi.License(name="BSD License"),
+      description="These are the available API's for mysecondproject. ",
+      #terms_of_service="https://www.google.com/policies/terms/",
+      #contact=openapi.Contact(email="contact@snippets.local"),
+      #license=openapi.License(name="BSD License"),
    ),
    public=True,
-   permission_classes=(permissions.AllowAny,),
+   permission_classes=(permissions.IsAuthenticated,),
 )
 
 #router required since we use ViewSets for API endpoints: 
@@ -42,5 +42,5 @@ urlpatterns = [
     #Swagger: 
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
+    #path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
 ]
