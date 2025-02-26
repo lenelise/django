@@ -1,5 +1,7 @@
 from rest_framework import viewsets,permissions, status
 from rest_framework.response import Response
+from rest_framework.exceptions import NotFound
+
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseSerializer
 from accounts.models import CustomUser
@@ -29,8 +31,27 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             return Expense.objects.all()
     
     #GET (overriding parent method to apply restrictions)
-    #def list(request, *args, **kwargs)
+    def list(self, request, *args, **kwargs):
 
+        #Check of primary key (pk) is given: 
+        pk = kwargs.get('pk', None)
+
+        if pk: 
+            try:
+                expense = Expense.objects.get(pk=pk, owner = request.user)
+            except Expense.DoesNotExist:
+                raise NotFound(detail="Task not found, or has other owner")
+            serializer =  ExpenseSerializer(expense, context={"request": request})
+        else: 
+            expenses = self.queryset
+            serializer = ExpenseSerializer(expenses, many=True, context={"request": request})
+
+        return Response(serializer.data)
+
+        # if serializer.is_valid():
+        #     return Response(serializer.data)
+        # else:
+        #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #POST: (overriding parent method to apply restrictions)
     def create(self, request, *args, **kwargs):
@@ -42,8 +63,8 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #PUT: (overriding parent method to apply restrictions)
-    #def update(request, *args, **kwargs):
-        
+
+
     
     #DELETE: (overriding parent method to apply restrictions)
     def destroy(self, *args, **kwargs):
