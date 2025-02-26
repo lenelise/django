@@ -53,7 +53,7 @@ AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication' #required for browsable APIs
     ],
     'DEFAULT_PERMISSION_CLASSES': [
