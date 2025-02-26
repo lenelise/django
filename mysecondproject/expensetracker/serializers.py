@@ -16,3 +16,13 @@ class ExpenseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta: 
         model = Expense
         fields = '__all__'
+
+        def __init__(self, *args, **kwargs):
+            """
+            Override the constructor to remove the 'owner' field when creating a new expense.
+            """
+            super().__init__(*args, **kwargs)
+            
+            # Remove the 'owner' field for the create method to prevent it from being included in the form.
+            if self.context['request'].method == 'POST':
+                self.fields.pop('owner')
