@@ -27,6 +27,12 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 Added the basics was easy :smile:
 
 ## JWT authentication:
+Added the basics and I think it works. 
+
+A testing script for this is httptest.py. 
+
+## logging
+added something in settings, but honestly not sure what it does at the moment (or if it does anything at all). Need to read up on this. 
 
 
 ## To do: 

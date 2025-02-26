@@ -20,12 +20,12 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     serializer_class = ExpenseSerializer
     permission_classes = [permissions.IsAuthenticated]
     queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
-
+    
     # overriding parent get_queryset method
     def get_queryset(self):
         '''
-        returns an iterable of objects from the database
-        provides the data that will be used in POST, GET, PUT and DELTE 
+        Returns an iterable of objects from the database.
+        Provides the data that will be used in POST, GET, PUT and DELETE. 
         '''
         if self.request.user.is_staff == False:
             return Expense.objects.filter(owner=self.request.user)
@@ -36,9 +36,6 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         operation_description="Fetch expense data."        
     )
     def list(self, request, *args, **kwargs):
-        '''
-            something something
-        '''
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
         if pk: 
@@ -48,7 +45,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
                 raise NotFound(detail="Task not found, or has other owner")
             serializer =  ExpenseSerializer(expense, context={"request": request})
         else: 
-            expenses = self.queryset
+            expenses = self.get_queryset()
             serializer = ExpenseSerializer(expenses, many=True, context={"request": request})
 
         return Response(serializer.data)
