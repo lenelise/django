@@ -1,4 +1,5 @@
-from rest_framework import viewsets,permissions
+from rest_framework import viewsets,permissions, status
+from rest_framework.response import Response
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseSerializer
 from accounts.models import CustomUser
@@ -18,12 +19,21 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         '''
-            Overriding get_queryset to apply restrictions for non-admin users. 
+            Overriding get_queryset from ModelViewSet to apply restrictions for non-admin users. 
         '''
         if self.request.user.is_staff == False:
             return Expense.objects.filter(owner=self.request.user)
         else: 
             return Expense.objects.all()
+        
+    def destroy(self, *args, **kwargs):
+        '''
+            Override destroy from ModelViewSet to apply restrictions. Only admin users should be able to DELETE expenses.
+        '''
+        if self.request.user.is_staff: 
+            return super().destroy(self.request,*args, **kwargs)
+        else: 
+            return Response("This action is not allowed for non-staff users", status=status.HTTP_403_FORBIDDEN)
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     '''

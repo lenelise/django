@@ -29,3 +29,4 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 4. staff user with the right permission can see all expenses and delete them 
 5. maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 6. Need logout fucntionality for non-admin users (/logout). Right now they have no way of logging out :white_check_mark:
+7. make it so that the owner of the expense is automatically set to the same user who posts it
