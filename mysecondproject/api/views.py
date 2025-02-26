@@ -33,8 +33,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     #GET (overriding parent method to apply restrictions)
     def list(self, request, *args, **kwargs):
 
-        #Check of primary key (pk) is given: 
-        pk = kwargs.get('pk', None)
+        pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
         if pk: 
             try:
@@ -48,11 +47,6 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data)
 
-        # if serializer.is_valid():
-        #     return Response(serializer.data)
-        # else:
-        #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     #POST: (overriding parent method to apply restrictions)
     def create(self, request, *args, **kwargs):
         serializer = ExpenseSerializer(data=request.data, context={"request": request})
@@ -63,9 +57,29 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     #PUT: (overriding parent method to apply restrictions)
+    def update(self, request, *args, **kwargs):
 
+        pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
-    
+        # If no pk given we throw an error:
+        if not pk: 
+            return Response({"detail": "Primary key is required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        #you can only edit your own expense:
+        try:
+            expense = Expense.objects.get(pk=pk, owner = request.user)
+        except Expense.DoesNotExist:
+            raise NotFound(detail="Task not found, or has other owner")
+        
+        #the actual editing: 
+        serializer =  ExpenseSerializer(expense, data=request.data, context={"request": request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else: 
+            return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
+        
+        
     #DELETE: (overriding parent method to apply restrictions)
     def destroy(self, *args, **kwargs):
         if self.request.user.is_staff: 

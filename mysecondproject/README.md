@@ -22,14 +22,16 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 - staff and non-staff users can both access api/expenses
 
 ## To do: 
-- staff user with the right permission can see all expenses and delete them 
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
-- make it so that the owner of the expense is automatically set to the same user who posts it
+- make it so that admin users can edit ALL expenses regardless of owner
 
 
 ## Done: 
-1. add some open (does not need authentication) APIs (list all expenses) :white_check_mark:
-2. require login or some authentication to be able to use the api :white_check_mark:
+-  add some open (does not need authentication) APIs (list all expenses) :white_check_mark:
+-  require login or some authentication to be able to use the api :white_check_mark:
     - only admin /staff can access user-api's
-3. only see the expenses you are the owner of (staff and non-staff) :white_check_mark:
-4. Need logout fucntionality for non-admin users (/logout). Right now they have no way of logging out :white_check_mark:
+- only see the expenses you are the owner of (staff and non-staff) :white_check_mark:
+- Need logout fucntionality for non-admin users (/logout). Right now they have no way of logging out :white_check_mark:
+- staff user with the right permission can see all expenses and delete them 
+- make it so that the owner of the expense is automatically set to the same user who posts it
+
