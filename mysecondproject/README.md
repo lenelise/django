@@ -26,6 +26,9 @@ If it grows out of control, I'll consider moving the notes elsewhere :smile:
 
 Added the basics was easy :smile:
 
+## JWT authentication:
+
+
 ## To do: 
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 - make it so that admin users can edit ALL expenses regardless of owner
@@ -39,4 +42,14 @@ Added the basics was easy :smile:
 - Need logout fucntionality for non-admin users (/logout). Right now they have no way of logging out :white_check_mark:
 - staff user with the right permission can see all expenses and delete them 
 - make it so that the owner of the expense is automatically set to the same user who posts it
+
+## Chatgpt's suggestions for things to implement: 
+1. Async tasks with Celery
+2. advances authentication with JWT
+3. Database optimization and indexing: 
+    - note to self: change to postgreSQL?
+4. API rate limiting and throttling
+5. implement caching strategies for data intenstive/read heavy operations
+5. docker and containarization
+6. deploy to prod
 

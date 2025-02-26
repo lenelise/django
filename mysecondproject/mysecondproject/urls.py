@@ -2,12 +2,18 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+
 from expensetracker.views import HomeView
-from rest_framework import routers, permissions
 from api.views import ExpenseViewSet, CustomUserViewSet
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
+from rest_framework import routers, permissions
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 #For Swagger: 
 schema_view = get_schema_view(
@@ -34,13 +40,16 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),  # Built-in login view
     path('logout/', auth_views.LogoutView.as_view(http_method_names=['get', 'post']), name='logout'),  # Built-in logout view
-
-    
+   
     #This is where my actual api endpoints are exposed: 
     path('api/', include(router.urls), name="api"), 
 
+    #JWT authentication:
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     #Swagger: 
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')
     #path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
 ]

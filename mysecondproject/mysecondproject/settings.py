@@ -44,13 +44,15 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'drf_yasg',
+    'rest_framework_simplejwt'
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication' #required for django admin + provides fallback if JWT fails
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
