@@ -10,7 +10,7 @@ This is a script used during development of JWT authentication only.
 
 #Step 1: get JWT token: 
 data = {
-    'username': 'non_staff1', 
+    'username': 'staff1', 
     'password': 'password321'
 }
 

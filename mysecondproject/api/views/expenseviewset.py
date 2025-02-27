@@ -6,8 +6,8 @@ from drf_yasg.utils import swagger_auto_schema
 
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
-from accounts.models import CustomUser
-from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
+# from accounts.models import CustomUser
+# from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
 
 class ExpenseViewSet(viewsets.ModelViewSet):
@@ -36,10 +36,10 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     
     #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 
-        if self.action == 'list':
-            return ExpenseGetSerializer
-        elif self.action == 'create':
+        if self.action in ['create', 'update']:
             return ExpensePostSerializer
+        else:
+            return ExpenseGetSerializer
 
     ############################################
     # POST, GET, DELETE and PUT methods below: #
@@ -110,32 +110,3 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             return Response("This action is not allowed for non-staff users", status=status.HTTP_403_FORBIDDEN)
 
-class CustomUserViewSet(viewsets.ModelViewSet):
-    '''
-        API endpoint to view or edit users.
-        Only allowed if you are authenticated as admin (staff). 
-        Want: only admin with certain permission is allowed here. 
-    '''
-
-    queryset = CustomUser.objects.all()
-    # serializer_class = CustomUserSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-
-    #overriding get_serializer_class since we have different serializers for GET and POST
-    def get_serializer_class(self): 
-        if self.action == 'list':
-            return CustomUserSerializer
-        elif self.action == 'create':
-            return CustomUserPostSerializer
-        
-    @swagger_auto_schema(
-        operation_description="Create users. Only available for admin users."        
-    )    
-    def create(self, request, *args, **kwargs):
-        serializer = CustomUserPostSerializer(data=request.data, context={"request": request})
-        if serializer.is_valid():
-            serializer.save(owner=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

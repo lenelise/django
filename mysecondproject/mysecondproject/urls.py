@@ -4,7 +4,8 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 from expensetracker.views import HomeView
-from api.views import ExpenseViewSet, CustomUserViewSet
+from api.views.expenseviewset import ExpenseViewSet
+from api.views.customuserview import CustomUserViewSet
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -33,7 +34,7 @@ schema_view = get_schema_view(
 #router required since we use ViewSets for API endpoints: 
 router = routers.DefaultRouter()
 router.register(r'expenses', ExpenseViewSet, basename='expense') #basename because we override get_queryset in the view
-router.register(r'users', CustomUserViewSet)
+router.register(r'users', CustomUserViewSet, basename='customuser')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
