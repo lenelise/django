@@ -43,6 +43,9 @@ added something in settings, but honestly not sure what it does at the moment (o
 ## To do: 
 This is just a list of ideas. Might not be updated. Kind of a braindump. 
 
+- have non admin users be able to GET their own user information, but not others
+- have granular permissions for non admin users, making some of them (the "admin of an organization") able to see users from their own organization. 
+    - same with expenses - filter by organization. 
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 - make it so that admin users can edit ALL expenses regardless of owner
 - consider separating the different API endpoints into separate files, and collecting them all in API 

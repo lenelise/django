@@ -15,3 +15,14 @@ class CustomUserSerializer(serializers.ModelSerializer):
         model = CustomUser
         fields = '__all__'
         #fields = ['username', 'is_staff']
+
+class CustomUserPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'username', 
+            'password', 
+            'first_name', 
+            'last_name', 
+            'email',
+            'date_of_birth']

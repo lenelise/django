@@ -7,7 +7,7 @@ from drf_yasg.utils import swagger_auto_schema
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
 from accounts.models import CustomUser
-from accounts.serializers import CustomUserSerializer
+from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
 
 class ExpenseViewSet(viewsets.ModelViewSet):
@@ -17,9 +17,10 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         PUT: non staff users can edit own expenses, admins can edit all. 
         DELETE: non admin user cannot delete expenses, admin users can delete any expense. 
     '''
-    # serializer_class = ExpensePostSerializer
     permission_classes = [permissions.IsAuthenticated]
     # queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
+    # serializer_class = ExpensePostSerializer #overriding get_serializer_class instead, since we have multiple serializers
+
 
     # overriding parent get_queryset method to restrict what they see
     # means we need basename in url.py routers
@@ -33,11 +34,16 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             return Expense.objects.all()
     
+    #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 
         if self.action == 'list':
             return ExpenseGetSerializer
         elif self.action == 'create':
             return ExpensePostSerializer
+
+    ############################################
+    # POST, GET, DELETE and PUT methods below: #
+    ############################################
 
     @swagger_auto_schema(
         operation_description="Fetch expense data."        
@@ -112,5 +118,24 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     '''
 
     queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
+    # serializer_class = CustomUserSerializer
     permission_classes = [permissions.IsAdminUser]
+
+
+    #overriding get_serializer_class since we have different serializers for GET and POST
+    def get_serializer_class(self): 
+        if self.action == 'list':
+            return CustomUserSerializer
+        elif self.action == 'create':
+            return CustomUserPostSerializer
+        
+    @swagger_auto_schema(
+        operation_description="Create users. Only available for admin users."        
+    )    
+    def create(self, request, *args, **kwargs):
+        serializer = CustomUserPostSerializer(data=request.data, context={"request": request})
+        if serializer.is_valid():
+            serializer.save(owner=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
