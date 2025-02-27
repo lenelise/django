@@ -25,7 +25,8 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
         #query parameters: 
         month_joined = self.request.query_params.get('month_joined')
-
+        #is staff = 
+        
         if month_joined is None:
             if self.request.user.is_staff == True: 
                 return CustomUser.objects.all()

@@ -7,12 +7,26 @@ If the README grows out of control, I'll consider moving the notes elsewhere :sm
 
 The code includes a lot of explanotary comments. It's because I am still learning and want to remember how things work, and why I have made the choices I have. 
 
-## How to add a new custom field to the CustomUser model in accounts: 
-    1. add it in models.py
-    2. update forms.py
-    3. update admin.py (add fieldsets and add_fieldsets)
-    4. run migrations
-    5. restart server and test it
+## Prioritized to do list :sunglasses: 
+2. pagination expenses (in API repsonse mainly, since we basically have no front end yet) 
+5. add support for MULTIPLE query parameters in both APIs (now we have just one per endpoint) [Q](https://docs.djangoproject.com/en/5.1/ref/models/querysets/#django.db.models.Q)
+
+## Known bugs :beetle:
+:beetle: POST user API doesn't work (for admin users)
+
+## To do list :memo:
+This is just a list of ideas. Might not be updated. Kind of a braindump. 
+
+- customize the swagger doc
+- have granular permissions for non admin users, making some of them (the "admin of an organization") able to see users from their own organization. 
+    - same with expenses - filter by organization. 
+    - then I need to make an organization model - need to have a think before implementing :think: 
+- maybe create a permission so that staff users can see ALL expenses (if they have said permission)
+- make it so that admin users can edit ALL expenses regardless of owner
+- pagination 
+- download your expenses as csv 
+    - filter on month/year/other 
+- I guess I need to add some front end stuff at some point :alien:
 
 ## API's and restrictions:
 All API's can be found on `base_url/swagger`. Be aware of the fact that we have not done much to customize this page (yet). The documentation is made using [Yet another swagger generator.](https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart)
@@ -61,31 +75,9 @@ Should read a bit up on manual_parameters here. used to control the parameters s
             ]        
         )
 
-## To do list/braindump
-This is just a list of ideas. Might not be updated. Kind of a braindump. 
 
-- customize the swagger doc
-- have granular permissions for non admin users, making some of them (the "admin of an organization") able to see users from their own organization. 
-    - same with expenses - filter by organization. 
-    - then I need to make an organization model - need to have a think before implementing :think: 
-- maybe create a permission so that staff users can see ALL expenses (if they have said permission)
-- make it so that admin users can edit ALL expenses regardless of owner
-- pagination 
-- download your expenses as csv 
-    - filter on month/year/other 
-- I guess I need to add some front end stuff at some point :alien:
-
-## Prioritized to do list :sunglasses: 
-2. pagination expenses (in API repsonse mainly, since we basically have no front end yet) 
-5. add support for MULTIPLE query parameters in both APIs (now we have just one per endpoint) [Q](https://docs.djangoproject.com/en/5.1/ref/models/querysets/#django.db.models.Q)
-
-## Done: 
-These are items moved from the to do list because they have been implemented and we believe they are working. 
-:white_check_mark:
-
-:white_check_mark:
-
-:white_check_mark:
+## Things I've done :bowtie: 
+These are items moved from the to do list because they have been implemented and I believe they are working. 
 
 :white_check_mark: filter user API on date_joined, date_of_birth or other (optional) parameters.
 
@@ -120,3 +112,9 @@ I asked ChatGPT what they would suggest for this project going forward. Here's w
 5. Docker and containarization
 6. Deploy to prod
 
+## How to add a new custom field to the CustomUser model in accounts: 
+    1. add it in models.py
+    2. update forms.py
+    3. update admin.py (add fieldsets and add_fieldsets)
+    4. run migrations
+    5. restart server and test it

@@ -70,6 +70,13 @@ class ExpenseViewSet(viewsets.ModelViewSet):
                 type=openapi.TYPE_INTEGER,  # Expecting an integer
                 required=False  # This makes it optional
             ),
+            openapi.Parameter(
+                'owner',  # Parameter name in URL
+                openapi.IN_QUERY,  # Query parameter
+                description="Filter expenses by owner userid.",  
+                type=openapi.TYPE_INTEGER,  # Expecting an integer
+                required=False  # This makes it optional
+            )
         ]        
     )
     def list(self, request, *args, **kwargs):
