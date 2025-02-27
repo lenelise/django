@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
@@ -30,17 +32,22 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
         #optional query parameters: 
         month = self.request.query_params.get('month')
+        owner = self.request.query_params.get('owner')
+        #day = self.request.query_params.get('day')
 
-        if month is not None:
-            if self.request.user.is_staff == False:
-                return Expense.objects.filter(owner=self.request.user,date__month=month)
-            else: 
-                return Expense.objects.filter(date__month=month)
-        else: 
-            if self.request.user.is_staff == False:
-                return Expense.objects.filter(owner=self.request.user)
-            else: 
-                return Expense.objects.all()
+        #Alternative to the below if else hellhole
+        query = Q()
+
+        if month: 
+            query &= Q(date__month=month)
+
+        if owner: 
+            query &= Q(owner=owner)
+
+        if self.request.user.is_staff == False:
+            query &= Q(owner=self.request.user)
+        
+        return Expense.objects.filter(query)
     
     #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 

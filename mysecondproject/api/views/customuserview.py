@@ -16,15 +16,14 @@ from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
 class CustomUserViewSet(viewsets.ModelViewSet):
 
-    # queryset = CustomUser.objects.all()
-    # serializer_class = CustomUserSerializer
+    # queryset = CustomUser.objects.all() #we dont use this since we want different behavior depending on admin/non admin 
+    # serializer_class = CustomUserSerializer #we dont use this, since we have mulitple CustomUser serializers
+
     permission_classes = [permissions.IsAuthenticated]
 
-    #overriding get_queryset() since we want different behaviour depending on admin/non admin
     def get_queryset(self):
 
         #query parameters: 
-        #isStaff = 
         month_joined = self.request.query_params.get('month_joined')
 
         if month_joined is None:
