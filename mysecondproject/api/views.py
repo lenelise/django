@@ -5,7 +5,7 @@ from rest_framework.exceptions import NotFound
 from drf_yasg.utils import swagger_auto_schema
 
 from expensetracker.models import Expense
-from expensetracker.serializers import ExpenseSerializer
+from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
 from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer
 
@@ -17,11 +17,12 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         PUT: non staff users can edit own expenses, admins can edit all. 
         DELETE: non admin user cannot delete expenses, admin users can delete any expense. 
     '''
-    serializer_class = ExpenseSerializer
+    # serializer_class = ExpensePostSerializer
     permission_classes = [permissions.IsAuthenticated]
-    queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
-    
-    # overriding parent get_queryset method
+    # queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
+
+    # overriding parent get_queryset method to restrict what they see
+    # means we need basename in url.py routers
     def get_queryset(self):
         '''
         Returns an iterable of objects from the database.
@@ -32,6 +33,12 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             return Expense.objects.all()
     
+    def get_serializer_class(self): 
+        if self.action == 'list':
+            return ExpenseGetSerializer
+        elif self.action == 'create':
+            return ExpensePostSerializer
+
     @swagger_auto_schema(
         operation_description="Fetch expense data."        
     )
@@ -43,10 +50,10 @@ class ExpenseViewSet(viewsets.ModelViewSet):
                 expense = Expense.objects.get(pk=pk, owner = request.user)
             except Expense.DoesNotExist:
                 raise NotFound(detail="Task not found, or has other owner")
-            serializer =  ExpenseSerializer(expense, context={"request": request})
+            serializer =  ExpenseGetSerializer(expense, context={"request": request})
         else: 
             expenses = self.get_queryset()
-            serializer = ExpenseSerializer(expenses, many=True, context={"request": request})
+            serializer = ExpenseGetSerializer(expenses, many=True, context={"request": request})
 
         return Response(serializer.data)
 
@@ -54,7 +61,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         operation_description="Create expense(s)."        
     )    
     def create(self, request, *args, **kwargs):
-        serializer = ExpenseSerializer(data=request.data, context={"request": request})
+        serializer = ExpensePostSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -79,7 +86,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             raise NotFound(detail="Task not found, or has other owner")
         
         #the actual editing: 
-        serializer =  ExpenseSerializer(expense, data=request.data, context={"request": request})
+        serializer =  ExpensePostSerializer(expense, data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

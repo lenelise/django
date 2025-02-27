@@ -4,6 +4,8 @@ This project is my way of learning Django, little by little.
 
 The README will act as a "note to self" for now, and I will take a note of different things I think of along the way, in additon to write down some of the things I have done so I dont forget it later on. If it grows out of control, I'll consider moving the notes elsewhere :smile: 
 
+The code includes a lot of explanotary comments. It's because I am still learning and want to remember how things work, and why I have made the choices I have. 
+
 ## How to add a new custom field to the CustomUser model in accounts: 
     1. add it in models.py
     2. update forms.py
@@ -44,6 +46,9 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 - make it so that admin users can edit ALL expenses regardless of owner
 - consider separating the different API endpoints into separate files, and collecting them all in API 
+- pagination 
+- download your expenses as csv 
+    - filter on month/year/other 
 
 ## Done: 
 These are items moved from the to do list because they have been implemented and we believe they are working. 
