@@ -58,12 +58,13 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 - I guess I need to add some front end stuff at some point :alien:
 
 ## Prioritized to do list :sunglasses: 
-1. give non admin users access to view/GET own user information 
 2. pagination expenses (in API repsonse mainly, since we basically have no front end yet)
 3. filter on month/year, aka: being able to call GET expenses and add some condition (year=2025) or something. 
 
 ## Done: 
 These are items moved from the to do list because they have been implemented and we believe they are working. 
+
+:white_check_mark: give non admin users access to GET/PUT/DELETE own user information 
 
 :white_check_mark: add some open (does not need authentication) APIs (list all expenses) 
 

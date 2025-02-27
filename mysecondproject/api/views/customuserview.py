@@ -7,14 +7,13 @@ from drf_yasg.utils import swagger_auto_schema
 from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
-
+'''
+    API endpoint to view or edit users.
+    Only allowed if you are authenticated as admin (staff). 
+    Want: only admin with certain permission is allowed here. 
+'''
 
 class CustomUserViewSet(viewsets.ModelViewSet):
-    '''
-        API endpoint to view or edit users.
-        Only allowed if you are authenticated as admin (staff). 
-        Want: only admin with certain permission is allowed here. 
-    '''
 
     # queryset = CustomUser.objects.all()
     # serializer_class = CustomUserSerializer
@@ -35,7 +34,9 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             return CustomUserSerializer
         
     
-    #GET: 
+    @swagger_auto_schema(
+        operation_description="Fetch user data. Admin get all user data unless pk is given, non admin get own user data."        
+    ) 
     def list(self, request, *args, **kwargs):
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 

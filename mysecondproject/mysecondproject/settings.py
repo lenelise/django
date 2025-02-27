@@ -67,6 +67,13 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ["Bearer"]  
 }
 
+SWAGGER_SETTINGS = {
+    'DISPLAY_OPERATION_ID': False,  # Ensure operation descriptions are shown directly,
+    'DEFAULT_MODEL_RENDERING': 'model',
+    'USE_SESSION_AUTH': False, #Disable django login as authentication
+    'SUPPORTED_SUBMIT_METHODS': [], #disables "Try it out"
+}
+
 #Not sure that this logging thing does anything, or if I just dont know how to use it: 
 LOGGING = {
     "version": 1,
@@ -172,9 +179,3 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 LOGOUT_REDIRECT_URL = "home" 
-
-
-SWAGGER_SETTINGS = {
-    'DISPLAY_OPERATION_ID': True,  # Ensure operation descriptions are shown directly,
-    'DEFAULT_MODEL_RENDERING': 'example'
-}
