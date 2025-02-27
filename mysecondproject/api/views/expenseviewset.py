@@ -28,6 +28,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         Provides the data that will be used in POST, GET, PUT and DELETE. 
         '''
 
+        #optional query parameters: 
         month = self.request.query_params.get('month')
 
         if month is not None:

@@ -78,6 +78,7 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 ## Prioritized to do list :sunglasses: 
 2. pagination expenses (in API repsonse mainly, since we basically have no front end yet)
 3. filter on month/year, aka: being able to call GET expenses and add some condition (year=2025) or something. 
+4. filter user API on date_joined, date_of_birth or other (optional) parameters. 
 
 ## Done: 
 These are items moved from the to do list because they have been implemented and we believe they are working. 
