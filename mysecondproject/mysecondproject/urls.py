@@ -45,6 +45,7 @@ urlpatterns = [
    
     #This is where my actual api endpoints are exposed: 
     path('api/', include(router.urls), name="api"), 
+    path('api-auth/', include('rest_framework.urls')), #login/out option in browsable API UI
 
     #JWT authentication:
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
