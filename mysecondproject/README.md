@@ -44,6 +44,22 @@ Added something in settings, but honestly not sure what it does at the moment (o
 
 According to this [stackoverflow](https://stackoverflow.com/questions/46916128/how-do-you-paginate-a-viewset-using-a-paginator-class) it seems like global or custom pagination settings won't work with viewset :screem_cat:
 
+## Swagger doc 
+
+Should read a bit up on manual_parameters here. used to control the parameters shown in swagger doc UI
+
+    @swagger_auto_schema(
+            operation_description="Fetch expense data.",
+            manual_parameters=[
+                openapi.Parameter(
+                    'month',  # Parameter name in URL
+                    openapi.IN_QUERY,  # Query parameter
+                    description="Filter expenses by month (1-12)",  
+                    type=openapi.TYPE_INTEGER,  # Expecting an integer
+                    required=False  # This makes it optional
+                ),
+            ]        
+        )
 
 ## To do list/braindump
 This is just a list of ideas. Might not be updated. Kind of a braindump. 

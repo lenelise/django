@@ -1,19 +1,15 @@
-from rest_framework import viewsets,permissions, status
+from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
-from rest_framework.pagination import PageNumberPagination
 
 from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
 
-from mysecondproject.mixins import MyPaginationMixin
 
-# class ExpensePagination(PageNumberPagination):
-#     page_size = 1
-
-class ExpenseViewSet(viewsets.ModelViewSet, MyPaginationMixin):
+class ExpenseViewSet(viewsets.ModelViewSet):
     '''
         GET: non staff users can see own expenses, admin users can see all. 
         POST: same behavior for all, you can only add expenses to yourself. 
@@ -31,10 +27,19 @@ class ExpenseViewSet(viewsets.ModelViewSet, MyPaginationMixin):
         Returns an iterable of objects from the database.
         Provides the data that will be used in POST, GET, PUT and DELETE. 
         '''
-        if self.request.user.is_staff == False:
-            return Expense.objects.filter(owner=self.request.user)
+
+        month = self.request.query_params.get('month')
+
+        if month is not None:
+            if self.request.user.is_staff == False:
+                return Expense.objects.filter(owner=self.request.user,date__month=month)
+            else: 
+                return Expense.objects.filter(date__month=month)
         else: 
-            return Expense.objects.all()
+            if self.request.user.is_staff == False:
+                return Expense.objects.filter(owner=self.request.user)
+            else: 
+                return Expense.objects.all()
     
     #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 
@@ -48,7 +53,16 @@ class ExpenseViewSet(viewsets.ModelViewSet, MyPaginationMixin):
     ############################################
 
     @swagger_auto_schema(
-        operation_description="Fetch expense data."        
+        operation_description="Fetch expense data.",
+        manual_parameters=[
+            openapi.Parameter(
+                'month',  # Parameter name in URL
+                openapi.IN_QUERY,  # Query parameter
+                description="Filter expenses by month (1-12)",  
+                type=openapi.TYPE_INTEGER,  # Expecting an integer
+                required=False  # This makes it optional
+            ),
+        ]        
     )
     def list(self, request, *args, **kwargs):
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
