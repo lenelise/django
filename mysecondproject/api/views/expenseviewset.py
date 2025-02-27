@@ -1,16 +1,19 @@
 from rest_framework import viewsets,permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework.pagination import PageNumberPagination
 
 from drf_yasg.utils import swagger_auto_schema
 
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
-# from accounts.models import CustomUser
-# from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
+from mysecondproject.mixins import MyPaginationMixin
 
-class ExpenseViewSet(viewsets.ModelViewSet):
+# class ExpensePagination(PageNumberPagination):
+#     page_size = 1
+
+class ExpenseViewSet(viewsets.ModelViewSet, MyPaginationMixin):
     '''
         GET: non staff users can see own expenses, admin users can see all. 
         POST: same behavior for all, you can only add expenses to yourself. 
@@ -20,7 +23,6 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     # queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
     # serializer_class = ExpensePostSerializer #overriding get_serializer_class instead, since we have multiple serializers
-
 
     # overriding parent get_queryset method to restrict what they see
     # means we need basename in url.py routers

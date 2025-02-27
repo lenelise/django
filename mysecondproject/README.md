@@ -40,18 +40,20 @@ A testing script for JWT authentication is httptest.py. It is just a script we h
 ## Logging
 Added something in settings, but honestly not sure what it does at the moment (or if it does anything at all). Need to read up on this. 
 
+## Pagination
+
+According to this [stackoverflow](https://stackoverflow.com/questions/46916128/how-do-you-paginate-a-viewset-using-a-paginator-class) it seems like global or custom pagination settings won't work with viewset :screem_cat:
+
 
 ## To do list/braindump
 This is just a list of ideas. Might not be updated. Kind of a braindump. 
 
 - customize the swagger doc
-- have non admin users be able to GET their own user information, but not others
 - have granular permissions for non admin users, making some of them (the "admin of an organization") able to see users from their own organization. 
     - same with expenses - filter by organization. 
     - then I need to make an organization model - need to have a think before implementing :think: 
 - maybe create a permission so that staff users can see ALL expenses (if they have said permission)
 - make it so that admin users can edit ALL expenses regardless of owner
-- consider separating the different API endpoints into separate files, and collecting them all in API 
 - pagination 
 - download your expenses as csv 
     - filter on month/year/other 
@@ -63,6 +65,8 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 
 ## Done: 
 These are items moved from the to do list because they have been implemented and we believe they are working. 
+
+:white_check_mark: consider separating the different API endpoints into separate files, and collecting them all in API 
 
 :white_check_mark: give non admin users access to GET/PUT/DELETE own user information 
 
