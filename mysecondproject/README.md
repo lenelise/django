@@ -11,8 +11,6 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 2. pagination expenses (in API repsonse mainly, since we basically have no front end yet) 
 5. add support for MULTIPLE query parameters in both APIs (now we have just one per endpoint) [Q](https://docs.djangoproject.com/en/5.1/ref/models/querysets/#django.db.models.Q)
 
-## Known bugs :beetle:
-:beetle: POST user API doesn't work (for admin users)
 
 ## To do list :memo:
 This is just a list of ideas. Might not be updated. Kind of a braindump. 
@@ -78,6 +76,8 @@ Should read a bit up on manual_parameters here. used to control the parameters s
 
 ## Things I've done :bowtie: 
 These are items moved from the to do list because they have been implemented and I believe they are working. 
+
+:beetle: Fixed POST api/users bug. 
 
 :white_check_mark: filter user API on date_joined, date_of_birth or other (optional) parameters.
 

@@ -30,21 +30,21 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         Provides the data that will be used in POST, GET, PUT and DELETE. 
         '''
 
-        #optional query parameters: 
-        month = self.request.query_params.get('month')
-        owner = self.request.query_params.get('owner')
-        #day = self.request.query_params.get('day')
+        #optional query params in API call: 
+        params = {
+            "date__year" : self.request.query_params.get('year'),
+            "date__month" : self.request.query_params.get('month'),
+            "owner": self.request.query_params.get('owner')
+        }
 
-        #Alternative to the below if else hellhole
-        query = Q()
+        query = Q() 
 
-        if month: 
-            query &= Q(date__month=month)
+        for key,value in params.items(): 
+            if value:
+                query &= Q(**{key: value})
 
-        if owner: 
-            query &= Q(owner=owner)
-
-        if self.request.user.is_staff == False:
+        #adding this to retrict non admin users to their own expeses only:
+        if not self.request.user.is_staff:
             query &= Q(owner=self.request.user)
         
         return Expense.objects.filter(query)
