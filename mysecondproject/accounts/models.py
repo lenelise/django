@@ -26,6 +26,8 @@ class CustomUser(AbstractUser):
 
     #Trying to add an extra field: 
     date_of_birth = models.DateField(null=True) #if null=False we wouldn't be able to add the field since users already exists in db
-
+    password = models.CharField(max_length=255)
+    # password2 = models.CharField(max_length=255)
+    
     def __str__(self):
         return self.username
