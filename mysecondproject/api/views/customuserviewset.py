@@ -10,12 +10,6 @@ from drf_yasg import openapi
 from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
-'''
-    API endpoint to view or edit users.
-    Only allowed if you are authenticated as admin (staff). 
-    Want: only admin with certain permission is allowed here. 
-'''
-
 class CustomUserViewSet(viewsets.ModelViewSet):
 
     # queryset = CustomUser.objects.all() #we dont use this since we want different behavior depending on admin/non admin 
