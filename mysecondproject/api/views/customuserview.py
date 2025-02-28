@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from rest_framework import viewsets,permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
@@ -24,20 +26,25 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
 
         #query parameters: 
-        month_joined = self.request.query_params.get('month_joined')
-        #is staff = 
-        
-        if month_joined is None:
-            if self.request.user.is_staff == True: 
-                return CustomUser.objects.all()
-            else: 
-                return CustomUser.objects.filter(id=self.request.user.id)
+
+        params = {
+            "date_joined__month": self.request.query_params.get('month_joined'),
+            "is_staff": self.request.query_params.get('is_staff')
+        }
+
+        query = Q()
+
+        if not self.request.user.is_staff:
+            #non admin users should only see their own user information no matter the query params
+            query &= Q(id=self.request.user.id)
         else: 
-            if self.request.user.is_staff == True: 
-                return CustomUser.objects.filter(date_joined__month = month_joined)
-            else: 
-                return CustomUser.objects.filter(id=self.request.user.id, date_joined__month = month_joined)
-    
+            #admin users can see all, or filter out any user they want
+            for key,value in params.items():
+                if value: 
+                    query &= Q(**{key:value})
+        
+        return CustomUser.objects.filter(query)
+
     #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 
         if self.action in ['create', 'update']: 
