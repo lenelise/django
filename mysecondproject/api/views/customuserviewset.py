@@ -81,7 +81,10 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = CustomUserPostSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        else:
+            if self.request.user.is_staff:
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"error": "Forbidden - you don't have access to this operation."}, status=status.HTTP_403_FORBIDDEN)
+        else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

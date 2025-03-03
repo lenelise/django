@@ -12,7 +12,7 @@ from drf_yasg import openapi
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
 
-import csv
+import csv, logging
 
 class ExpenseViewSet(viewsets.ModelViewSet):
     '''
@@ -83,6 +83,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         ]        
     )
     def list(self, request, *args, **kwargs):
+        logger = logging.getLogger(__name__)
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
         if pk: 
@@ -94,7 +95,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             expenses = self.get_queryset()
             serializer = ExpenseGetSerializer(expenses, many=True, context={"request": request})
-
+        logger.debug("expenseviewset.list() called")
         return Response(serializer.data)
 
     @swagger_auto_schema(

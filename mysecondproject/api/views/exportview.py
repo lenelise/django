@@ -1,18 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-
-# from expensetracker.serializers import ExpenseGetSerializer
-# from accounts.serializers import CustomUserSerializer
-from .expenseviewset import ExpenseViewSet
-from .customuserviewset import CustomUserViewSet
-
-from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 
-from expensetracker.models import Expense
-from accounts.models import CustomUser
+from .expenseviewset import ExpenseViewSet
+from .customuserviewset import CustomUserViewSet
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
@@ -21,7 +15,7 @@ import csv
 
 class ExportView(APIView):
     permission_classes = [IsAuthenticated] 
-    # authentication_classes = [JWTAuthentication] #to force JWT for this endpoint
+    
     @swagger_auto_schema(
         operation_description="Export data as csv.",
         manual_parameters=[
@@ -42,7 +36,7 @@ class ExportView(APIView):
         elif type == "users": 
             return self.export_users(request)
         else: 
-            return Response({"error": "Ugyldig type."}, status=400) #bør kanskje raise proper expections/response code. gir 200 nå
+            return Response({"error": "Ugyldig eller manglende type."}, status=status.HTTP_400_BAD_REQUEST) #bør kanskje raise proper expections/response code. gir 200 nå
         
     def export_expenses(self, request):
         expense_viewset = ExpenseViewSet()
@@ -58,7 +52,6 @@ class ExportView(APIView):
 
         
     def export_users(self, request):
-
         customusers_viewset = CustomUserViewSet()
         customusers_viewset.request = request
         data = customusers_viewset.get_queryset()
@@ -68,10 +61,7 @@ class ExportView(APIView):
 
         fieldnames = ['username', 'date_of_birth']
         
-        return self.write_to_csv(
-            fieldnames=fieldnames, 
-            data = data, 
-            response = response)
+        return self.write_to_csv(fieldnames=fieldnames, data = data, response = response)
     
     def write_to_csv(self, fieldnames, data, response):
         '''
@@ -82,8 +72,7 @@ class ExportView(APIView):
         for row in data: 
             cleaned_row = {}
             for field in fieldnames: 
-                # cleaned_row[field] = row.get(field, "") 
-                cleaned_row[field] = getattr(row, field, "") 
+                cleaned_row[field] = getattr(row, field, "") #get attribute "field" from object "row" (expense or customuser object)
             writer.writerow(cleaned_row)
         return response
         

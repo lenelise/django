@@ -8,9 +8,10 @@ If the README grows out of control, I'll consider moving the notes elsewhere :sm
 The code includes a lot of explanotary comments. It's because I am still learning and want to remember how things work, and why I have made the choices I have. 
 
 ## Prioritized to do list :sunglasses: 
-1. Eksport API
-2. Soft delete av utgifter/brukere istedenfor hard delete (slik APIet er nå).
-3. Permissions og groups i django for tilgangsstyring. 
+1. Export API with same permission/accesss as POST and GET
+2. Soft delete using DELETE api (now we have hard delete)
+3. Use permission and groups to implement more fine grained control access
+4. Logging of some sort 
 
 
 ## To do list :memo:
@@ -50,9 +51,6 @@ We have kept the option to have browsable API's, and thus also Session based aut
 
 A testing script for JWT authentication is httptest.py. It is just a script we have used during development to test the feature (and debugging a very annoying :beetle:), nothing more or nothing less. 
 
-## Logging
-Added something in settings, but honestly not sure what it does at the moment (or if it does anything at all). Need to read up on this. 
-
 ## Pagination
 
 According to this [stackoverflow](https://stackoverflow.com/questions/46916128/how-do-you-paginate-a-viewset-using-a-paginator-class) it seems like global or custom pagination settings won't work with viewset :screem_cat:
@@ -77,6 +75,8 @@ Should read a bit up on manual_parameters here. used to control the parameters s
 
 ## Things I've done :bowtie: 
 These are items moved from the to do list because they have been implemented and I believe they are working. 
+
+:white_check_mark: api/fileexport (api/views/exportview.py)
 
 :beetle: Fixed POST api/users bug. 
 
