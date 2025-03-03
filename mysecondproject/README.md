@@ -8,8 +8,9 @@ If the README grows out of control, I'll consider moving the notes elsewhere :sm
 The code includes a lot of explanotary comments. It's because I am still learning and want to remember how things work, and why I have made the choices I have. 
 
 ## Prioritized to do list :sunglasses: 
-2. pagination expenses (in API repsonse mainly, since we basically have no front end yet) 
-5. add support for MULTIPLE query parameters in both APIs (now we have just one per endpoint) [Q](https://docs.djangoproject.com/en/5.1/ref/models/querysets/#django.db.models.Q)
+1. Eksport API
+2. Soft delete av utgifter/brukere istedenfor hard delete (slik APIet er nå).
+3. Permissions og groups i django for tilgangsstyring. 
 
 
 ## To do list :memo:
@@ -101,16 +102,33 @@ These are items moved from the to do list because they have been implemented and
 :white_check_mark:make it so that the owner of the expense is automatically set to the same user who posts it
 
 ## ChatGPT's suggestions for things to implement: 
-I asked ChatGPT what they would suggest for this project going forward. Here's what they said: 
 
-1. Async tasks with Celery
-2. Advanced authentication with JWT
-3. Database optimization and indexing: 
-    - note to self: change to postgreSQL?
-4. API rate limiting and throttling
-5. Implement caching strategies for data intenstive/read heavy operations
-5. Docker and containarization
-6. Deploy to prod
+**Backend-forbedringer:**
+1. Brukerroller og tillatelser: Implementer grupper og tillatelser (f.eks. admin, regular_user) med Django sitt permissions-system. Bruk DRF-permissions til å begrense API-endepunkter basert på roller.
+    - Eksempel: Bare administratorer kan slette utgifter.
+
+2. Soft Delete for utgifter: I stedet for å slette poster fra databasen, legg til et is_deleted-felt og filtrer ut slettede elementer. Gir bedre feilhåndtering og mulighet for å gjenopprette data.
+3. Logging og overvåkning: Logg API-kall med Django Signals. Bruk django-activity-stream for å spore hendelser som "bruker opprettet utgift". Implementer Sentry eller Elastic APM for feillogging.
+
+**Utvid API-funksjonaliteten:**
+4. Søk og filtrering: Bruk DjangoFilterBackend eller django-rest-framework-filters for å filtrere utgifter basert på dato, kategori osv.
+    - eksempel: GET /api/expenses/?category=food&min_amount=100
+5. Paginering: Hvis API-et returnerer mange utgifter, implementer paginering med PageNumberPagination eller LimitOffsetPagination.
+6. Eksport av data: Gi brukere mulighet til å eksportere utgifter som CSV eller Excel (bruk django-import-export eller pandas). Kan kombineres med e-postvarsling (f.eks. send eksporterte data som vedlegg).
+
+**Frontend & UI (Django + JavaScript/React)**
+7. Enkel frontend med Django Templates: Bygg en enkel visuell oversikt over utgiftene med Django Template Engine. Bruk HTMX for AJAX-oppdateringer uten å bruke et frontend-rammeverk.
+8. Bygg en React/Vue-app: Lag en frontend med React eller Vue som henter utgifter fra API-et ditt. Bruk React Query eller Axios for API-kall.
+
+**Autentisering og Sikkerhet**
+9. OAuth eller Google/Facebook login: Bruk django-allauth eller dj-rest-auth for å la brukere logge inn med Google/Facebook.
+10. Rate Limiting og Throttling: Bruk DRF-throttling for å begrense API-kall og forhindre misbruk.
+11. Totrinnsautentisering (2FA): Bruk django-otp eller django-two-factor-auth for ekstra sikkerhet.
+
+**Andre mulige funksjoner:**
+12. Automatiske e-poster: Bruk Celery + Redis for å sende periodiske rapporter om utgifter til brukerne.
+13. Dashboards & Statistikk: Bruk django-plotly-dash eller matplotlib for å visualisere utgifter med grafer.
+14. AI/ML-integrasjon: Bruk scikit-learn for å gi innsikt i utgiftsvaner eller predikere kommende utgifter.
 
 ## How to add a new custom field to the CustomUser model in accounts: 
     1. add it in models.py

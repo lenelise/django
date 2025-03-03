@@ -6,6 +6,7 @@ from django.urls import path, include
 from expensetracker.views import HomeView
 from api.views.expenseviewset import ExpenseViewSet
 from api.views.customuserviewset import CustomUserViewSet
+from api.views.exportview import ExportView
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -46,7 +47,7 @@ urlpatterns = [
     #This is where my actual api endpoints are exposed: 
     path('api/', include(router.urls), name="api"), 
     path('api-auth/', include('rest_framework.urls')), #login/out option in browsable API UI
-    # path('api/expense-export', ExportExpenseView.as_view(), name='expense-export'), 
+    path('api/fileexport', ExportView.as_view(), name='file-export'), 
 
     #JWT authentication:
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
