@@ -142,36 +142,6 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         else: 
             return Response("This action is not allowed for non-staff users", status=status.HTTP_403_FORBIDDEN)
 
-    # @action(
-    #         detail=False, #we are dealing with ALL expenses, not single ones
-    #         methods=['get']
-    # )
-    # def export(self, request):
-    #     '''
-    #         endpoint for exporting expense data. 
-    #     '''
-    #     queryset = self.filter_queryset(self.get_queryset())
-    #     serializer = self.get_serializer(queryset, many=True)
-    #     data = serializer.data #list of dictionaries
 
-    #     response = HttpResponse(content_type="text/csv") #tells the browser that the reponse is a csv, not html or json
-    #     response["Content-Disposition"] = 'attachment; filename="expenses.csv"' #tells the browser that it should download a file, not display a page
-
-    #     fieldnames = ["url", "title", "content", "price", "date", "owner"]
-    #     writer = csv.DictWriter(response, fieldnames=fieldnames)
-    #     writer.writeheader()
-
-    #     for row in data:
-    #         cleaned_row = {
-    #             "url": row.get("url", ""),
-    #             "title": row.get("title", ""),
-    #             "content": row.get("content", ""),
-    #             "price": row.get("price", ""),
-    #             "date": row.get("date", ""),
-    #             "owner": row.get("owner", {}).get("url", "")  # Get the URL of the owner (if present)
-    #             }
-    #         writer.writerow(cleaned_row)
-
-    #     return response
 
        
