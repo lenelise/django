@@ -32,7 +32,7 @@ schema_view = get_schema_view(
 
 #router required since we use ViewSets for API endpoints: 
 router = routers.DefaultRouter()
-router.register(r'expenses', ExpenseViewSet, basename='expenses') #basename because we override get_queryset in the view
+router.register(r'expenses', ExpenseViewSet, basename='expense') #basename because we override get_queryset in the view
 router.register(r'users', CustomUserViewSet, basename='customuser')
 
 urlpatterns = [
