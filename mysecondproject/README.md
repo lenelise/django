@@ -8,11 +8,11 @@ If the README grows out of control, I'll consider moving the notes elsewhere :sm
 The code includes a lot of explanotary comments. It's because I am still learning and want to remember how things work, and why I have made the choices I have. 
 
 ## Prioritized to do list :sunglasses: 
-1. Export API with same permission/accesss as POST and GET
-2. Soft delete using DELETE api (now we have hard delete)
-3. Use permission and groups to implement more fine grained control access
-4. Logging of some sort 
-5. Search API
+- Automated tests using django and rest-framework built in tools
+- Soft delete using DELETE api (now we have hard delete)
+- Use permission and groups to implement more fine grained control access
+- Logging of some sort 
+- Search API
 
 ## To do list :memo:
 This is just a list of ideas. Might not be updated. Kind of a braindump. 
@@ -75,6 +75,8 @@ Should read a bit up on manual_parameters here. used to control the parameters s
 
 ## Things I've done :bowtie: 
 These are items moved from the to do list because they have been implemented and I believe they are working. 
+
+:wihte_chec_mark: Create an export API with same permission/accesss as POST and GET
 
 :white_check_mark: api/fileexport (api/views/exportview.py)
 

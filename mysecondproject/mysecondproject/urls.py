@@ -32,7 +32,7 @@ schema_view = get_schema_view(
 
 #router required since we use ViewSets for API endpoints: 
 router = routers.DefaultRouter()
-router.register(r'expenses', ExpenseViewSet, basename='expense') #basename because we override get_queryset in the view
+router.register(r'expenses', ExpenseViewSet, basename='expenses') #basename because we override get_queryset in the view
 router.register(r'users', CustomUserViewSet, basename='customuser')
 
 urlpatterns = [
@@ -46,7 +46,7 @@ urlpatterns = [
     path('api/', include(router.urls), name="api"), 
     path('api-auth/', include('rest_framework.urls')), #login/out option in browsable API UI
     path('api/fileexport/', ExportView.as_view(), name='file-export'), 
-    path('api/categories/', ExpenseCategoryView.as_view(), name='category'),
+    path('api/categories/', ExpenseCategoryView.as_view(), name='categories'),
 
     #JWT authentication:
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
