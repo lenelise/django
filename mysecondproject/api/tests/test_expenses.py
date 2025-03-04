@@ -7,7 +7,7 @@ from expensetracker.models import Expense
 from accounts.models import CustomUser
 
 class ExpenseTestCase(APITestCase):
-    '''Tests for authenticated use of Expense APIs'''
+    '''Tests for GET api/expeses/'''
 
     def setUp(self):
         '''Create what is needed to run the tests:'''
@@ -24,7 +24,7 @@ class ExpenseTestCase(APITestCase):
             owner = self.normal_user
         )
         self.list_url = reverse("expense-list")
-        # self.create_url = reverse("expense-create")
+        self.detail_url = reverse('expense-detail', kwargs={'pk': self.expense_admin.pk})
 
     def test_get_expenses_admin(self):
         '''Authenticated GET expenses ADMIN'''
@@ -40,10 +40,35 @@ class ExpenseTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.json()),1)
 
-    def test_get_expenses_unauthicated(self):
+    def test_get_expenses_unauthenticated(self):
         '''Unauthenticated GET expenses'''
         response = self.client.get(self.list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    def test_post_expenses_normal(self):
+        '''Authenticated POST api/expenses/ NON-ADMIN'''
 
+        self.client.force_authenticate(user=self.normal_user)
+        data = {
+            "title": "New expense",
+            "price": 100
+        }
+        response = self.client.post(self.list_url, data)
+        # print(response.json())
+        # print(Expense.objects.values())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Expense.objects.last().owner_id, self.normal_user.id) #checks owner is correctly assigned
 
+    def test_delete_expense_normal(self):
+        '''Authenticated DELETE api/expenses/ NON-ADMIN'''
+        self.client.force_authenticate(user=self.normal_user)
+        response = self.client.delete(self.detail_url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_delete_expense_admin(self):
+        '''Authenticated DELETE api/expenses/ ADMIN'''
+        self.client.force_authenticate(user=self.admin_user)
+        response = self.client.delete(self.detail_url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    # Test PUT

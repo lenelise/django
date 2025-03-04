@@ -9,6 +9,7 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 
 ## Prioritized to do list :sunglasses: 
 - Automated tests using django and rest-framework built in tools
+    - started, but test POST api/expenses fails to check owner. 
 - Soft delete using DELETE api (now we have hard delete)
 - Use permission and groups to implement more fine grained control access
 - Logging of some sort 

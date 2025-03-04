@@ -19,6 +19,7 @@ class ExpenseCategoryView(APIView):
         serializer = ExpenseCategorySerializer(categories, many=True)
         return Response(serializer.data)
     
+    @swagger_auto_schema(operation_description="Post new category data." ) 
     def post(self, request): 
         serializer = ExpenseCategorySerializer(data=request.data, many=True)
         if serializer.is_valid():
