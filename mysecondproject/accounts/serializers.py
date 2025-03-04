@@ -2,19 +2,14 @@ from rest_framework import serializers
 from .models import CustomUser
 
 '''
-    serializers will convert the ExpenseModel objects to 
-    a format (JSON) supported in the API
+    serializers will convert the CustomUserModel objects to a format supported in the API (JSON) 
 '''
 
 class CustomUserSerializer(serializers.ModelSerializer): 
-    '''
-        Since we don't need to show any url'shere, we choose ModelSerializer instead of HyperlinkedModelSerializer
-    '''
-
     class Meta: 
         model = CustomUser
         fields = '__all__'
-        #fields = ['username', 'is_staff']
+        # fields = ['username', 'password', 'user_permissions', 'is_staff']
 
 class CustomUserPostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +17,5 @@ class CustomUserPostSerializer(serializers.ModelSerializer):
         fields = [
             'username', 
             'password', 
-            'first_name', 
-            'last_name', 
-            'email',
-            'date_of_birth']
+            'user_permissions', 
+            'groups']

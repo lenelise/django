@@ -11,22 +11,15 @@ from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
 class CustomUserViewSet(viewsets.ModelViewSet):
-
-    # queryset = CustomUser.objects.all() #we dont use this since we want different behavior depending on admin/non admin 
-    # serializer_class = CustomUserSerializer #we dont use this, since we have mulitple CustomUser serializers
-
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-
-        #query parameters: 
-
         params = {
             "date_joined__month": self.request.query_params.get('month_joined'),
             "is_staff": self.request.query_params.get('is_staff')
         }
 
-        query = Q()
+        query = Q() # Q allows us to build more complex queries
 
         if not self.request.user.is_staff:
             #non admin users should only see their own user information no matter the query params

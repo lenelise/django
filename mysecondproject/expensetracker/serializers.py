@@ -26,3 +26,11 @@ class ExpensePostSerializer(serializers.ModelSerializer):
         model = Expense
         # fields = ['title', 'content', 'price']
         exclude = ['owner']
+
+    def validate_price(self, price):
+        if price < 0:
+            raise serializers.ValidationError(
+                "Price must be greater than 0"
+            )
+        else: 
+            return price
