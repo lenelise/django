@@ -12,7 +12,7 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 2. Soft delete using DELETE api (now we have hard delete)
 3. Use permission and groups to implement more fine grained control access
 4. Logging of some sort 
-
+5. Search API
 
 ## To do list :memo:
 This is just a list of ideas. Might not be updated. Kind of a braindump. 

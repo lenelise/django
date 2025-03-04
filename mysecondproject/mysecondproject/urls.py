@@ -7,6 +7,7 @@ from expensetracker.views import HomeView
 from api.views.expenseviewset import ExpenseViewSet
 from api.views.customuserviewset import CustomUserViewSet
 from api.views.exportview import ExportView
+from api.views.categoryview import ExpenseCategoryView
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -24,9 +25,6 @@ schema_view = get_schema_view(
       title="Mysecondproject API's",
       default_version='v1',
       description="These are the available API's for mysecondproject. ",
-      #terms_of_service="https://www.google.com/policies/terms/",
-      #contact=openapi.Contact(email="contact@snippets.local"),
-      #license=openapi.License(name="BSD License"),
    ),
    public=True,
    permission_classes=(permissions.IsAuthenticated,),
@@ -47,7 +45,8 @@ urlpatterns = [
     #This is where my actual api endpoints are exposed: 
     path('api/', include(router.urls), name="api"), 
     path('api-auth/', include('rest_framework.urls')), #login/out option in browsable API UI
-    path('api/fileexport', ExportView.as_view(), name='file-export'), 
+    path('api/fileexport/', ExportView.as_view(), name='file-export'), 
+    path('api/categories/', ExpenseCategoryView.as_view(), name='category'),
 
     #JWT authentication:
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

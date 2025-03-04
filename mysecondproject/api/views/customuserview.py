@@ -15,45 +15,6 @@
 
 #     permission_classes = [permissions.IsAuthenticated]
 
-#     def get_queryset(self):
-#         params = {
-#             "date_joined__month": self.request.query_params.get('month_joined'),
-#             "is_staff": self.request.query_params.get('is_staff')
-#         }
-
-#         query = Q()
-
-#         if not self.request.user.is_staff:
-#             #non admin users should only see their own user information no matter the query params
-#             query &= Q(id=self.request.user.id)
-#         else: 
-#             #admin users can see all, or filter out any user they want
-#             for key,value in params.items():
-#                 if value: 
-#                     query &= Q(**{key:value})
-        
-#         return CustomUser.objects.filter(query)
-
-#     #overriding get_serializer_class since we have different serializers for GET and POST
-#     def get_serializer_class(self): 
-#         if self.action in ['create', 'update']: 
-#             return CustomUserPostSerializer
-#         else: 
-#             return CustomUserSerializer
-        
-    
-#     @swagger_auto_schema(
-#         operation_description="Fetch user data. Admin get all user data unless pk is given, non admin get own user data.",
-#         manual_parameters=[
-#             openapi.Parameter(
-#                 'month_joined',  # Parameter name in URL
-#                 openapi.IN_QUERY,  # Query parameter
-#                 description="Filter users by month joined (01-12)",  
-#                 type=openapi.TYPE_INTEGER,  # Expecting an integer
-#                 required=False  # This makes it optional
-#             ),
-#         ]       
-#     ) 
 #     def get(self, request, *args, **kwargs):
 #         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
 
@@ -67,19 +28,5 @@
 #             users = self.get_queryset()
 #             serializer = CustomUserSerializer(users, many=True, context={"request": request})
 
-#         return Response(serializer.data)
+#         return Response(serializer.data)   
 
-
-#     @swagger_auto_schema(
-#         operation_description="Create users. Only available for admin users."        
-#     )    
-#     def create(self, request, *args, **kwargs):
-#         serializer = CustomUserPostSerializer(data=request.data, context={"request": request})
-#         if serializer.is_valid():
-#             if self.request.user.is_staff:
-#                 serializer.save()
-#                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-#             else:
-#                 return Response({"error": "Forbidden - you don't have access to this operation."}, status=status.HTTP_403_FORBIDDEN)
-#         else: 
-#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
