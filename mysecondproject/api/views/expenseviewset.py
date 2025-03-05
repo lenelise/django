@@ -18,22 +18,18 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         PUT: non staff users can edit own expenses, admins can edit all. 
         DELETE: non admin user cannot delete expenses, admin users can delete any expense. 
     '''
-    permission_classes = [permissions.IsAuthenticated]
-    # queryset = Expense.objects.all()  #a reference point, will be edited in method get_queryset() below
-    # serializer_class = ExpensePostSerializer #overriding get_serializer_class instead, since we have multiple serializers
-
     # overriding parent get_queryset method to restrict what they see
     # means we need basename in url.py routers
-    def get_queryset(self):
 
-        #optional query params in API call: 
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        query = Q()         
         params = {
             "date__year" : self.request.query_params.get('year'),
             "date__month" : self.request.query_params.get('month'),
             "owner": self.request.query_params.get('owner')
         }
-
-        query = Q() 
 
         for key,value in params.items(): 
             if value:
@@ -45,16 +41,12 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         
         return Expense.objects.filter(query)
     
-    #overriding get_serializer_class since we have different serializers for GET and POST
     def get_serializer_class(self): 
         if self.action in ['create', 'update']:
             return ExpensePostSerializer
         else:
             return ExpenseGetSerializer
 
-    ############################################
-    # POST, GET, DELETE and PUT methods below: #
-    ############################################
 
     @swagger_auto_schema(
         operation_description="Fetch expense data.",

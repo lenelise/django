@@ -11,7 +11,6 @@ class ExpenseGetSerializer(serializers.HyperlinkedModelSerializer):
 class ExpensePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Expense
-        # fields = ['title', 'content', 'price']
         exclude = ['owner']
 
     def validate_price(self, price):
