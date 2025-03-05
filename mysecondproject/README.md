@@ -65,6 +65,8 @@ According to this [stackoverflow](https://stackoverflow.com/questions/46916128/h
 ## Things I've done :bowtie: 
 These are items moved from the to do list because they have been implemented and I believe they are working. 
 
+:white_check_mark: Added default throttle policy. 
+
 :white_check_mark: Automated tests using django and rest-framework built in tools
 
 :wihte_check_mark: Create an export API with same permission/accesss as POST and GET
