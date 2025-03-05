@@ -25,10 +25,6 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     # overriding parent get_queryset method to restrict what they see
     # means we need basename in url.py routers
     def get_queryset(self):
-        '''
-        Returns an iterable of objects from the database.
-        Provides the data that will be used in POST, GET, PUT and DELETE. 
-        '''
 
         #optional query params in API call: 
         params = {

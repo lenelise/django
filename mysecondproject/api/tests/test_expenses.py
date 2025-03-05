@@ -37,13 +37,37 @@ class ExpenseTestCase(APITestCase):
         '''Authenticated GET expenses NON-ADMIN'''
         self.client.force_authenticate(user=self.normal_user)
         response = self.client.get(self.list_url)
+        expenses = response.json()
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.json()),1)
+        # self.assertEqual(Expense.objects.last().owner_id, self.normal_user.id) #checks owner is correctly assigned
+        self.assertTrue(all(expense['owner'] == f"http://testserver/api/users/{self.normal_user.id}/" for expense in expenses))
 
     def test_get_expenses_unauthenticated(self):
         '''Unauthenticated GET expenses'''
         response = self.client.get(self.list_url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_get_single_expense_admin(self):
+        pass
+
+    def test_get_single_expense_normal(self):
+        pass
+
+    def test_get_single_expense_unauthenticated(self):
+        response = self.client.get(self.detail_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_post_expenses_admin(self):
+        self.client.force_authenticate(user=self.admin_user)
+        data = {
+            "title": "New expense",
+            "price": 100
+        }
+        response = self.client.post(self.list_url, data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Expense.objects.last().owner_id, self.admin_user.id) #checks owner is correctly assigned
 
     def test_post_expenses_normal(self):
         '''Authenticated POST api/expenses/ NON-ADMIN'''
@@ -54,16 +78,12 @@ class ExpenseTestCase(APITestCase):
             "price": 100
         }
         response = self.client.post(self.list_url, data)
-        # print(response.json())
-        # print(Expense.objects.values())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Expense.objects.last().owner_id, self.normal_user.id) #checks owner is correctly assigned
 
-    def test_delete_expense_normal(self):
-        '''Authenticated DELETE api/expenses/ NON-ADMIN'''
-        self.client.force_authenticate(user=self.normal_user)
-        response = self.client.delete(self.detail_url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+    def test_post_expense_unauthenticated(self):
+        response = self.client.post(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_delete_expense_admin(self):
         '''Authenticated DELETE api/expenses/ ADMIN'''
@@ -71,4 +91,14 @@ class ExpenseTestCase(APITestCase):
         response = self.client.delete(self.detail_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
-    # Test PUT
+    def test_delete_expense_normal(self):
+        '''Authenticated DELETE api/expenses/ NON-ADMIN'''
+        self.client.force_authenticate(user=self.normal_user)
+        response = self.client.delete(self.detail_url)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_delete_expense_unauthenticated(self):
+        response = self.client.delete(self.list_url)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    # Test PUT and PATCH requests:
