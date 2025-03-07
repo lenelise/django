@@ -1,12 +1,15 @@
 from django.db.models import Q
-
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets,permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
+from rest_framework.decorators import action
+
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
+from api.filters import CustomUserFilter
 from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
@@ -14,12 +17,14 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
+        
         params = {
+            "username": self.request.query_params.get("username"),
             "date_joined__month": self.request.query_params.get('month_joined'),
             "is_staff": self.request.query_params.get('is_staff')
         }
 
-        query = Q() # Q allows us to build more complex queries
+        query = Q(is_deleted=False) # only want to list non-deleted users
 
         if not self.request.user.is_staff:
             #non admin users should only see their own user information no matter the query params
@@ -38,8 +43,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             return CustomUserPostSerializer
         else: 
             return CustomUserSerializer
-        
-    
+          
     @swagger_auto_schema(
         operation_description="Fetch user data. Admin get all user data unless pk is given, non admin get own user data.",
         manual_parameters=[
@@ -59,14 +63,13 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             try:
                 user = CustomUser.objects.get(pk=pk)
             except CustomUser.DoesNotExist:
-                raise NotFound(detail="Task not found, or has other owner")
+                raise NotFound(detail="User not found, or has other owner")
             serializer =  CustomUserSerializer(user, context={"request": request})
         else: 
             users = self.get_queryset()
             serializer = CustomUserSerializer(users, many=True, context={"request": request})
 
         return Response(serializer.data)
-
 
     @swagger_auto_schema(
         operation_description="Create users. Only available for admin users."        
@@ -81,3 +84,25 @@ class CustomUserViewSet(viewsets.ModelViewSet):
                 return Response({"error": "Forbidden - you don't have access to this operation."}, status=status.HTTP_403_FORBIDDEN)
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        else: 
+            return super().destroy(self.request, *args, **kwargs)
+
+    @action(
+            detail=True)
+    def soft_delete(self, request, **kwargs):
+        pk = kwargs.get('pk', None) #get the pk if it is given, if not set to None
+
+        if pk is None: 
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        else: 
+            user = CustomUser.objects.get(pk=pk)
+            user.is_deleted = True
+            user.is_active = False
+            # user.groups = [] #remove all permissions given via groups
+            # user.user_permissions = [] #remove all permissions
+            user.save() #save changes
+            return Response(status=status.HTTP_200_OK)

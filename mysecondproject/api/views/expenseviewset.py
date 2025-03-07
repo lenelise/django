@@ -22,7 +22,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
     # means we need basename in url.py routers
 
     permission_classes = [permissions.IsAuthenticated]
-
+    # fitlerset_fields = ('title')
     def get_queryset(self):
         query = Q()         
         params = {

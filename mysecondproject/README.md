@@ -9,6 +9,7 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 ## Prioritized to do list :sunglasses: 
 - Change api views to use Filters instead of how I do it right not (I think there are built in functionality in django for this)
 - Soft delete using DELETE api (now we have hard delete)
+    - implement for the user module
 - Use permission and groups to implement more fine grained control access
 - Logging of some sort 
 - Search API
