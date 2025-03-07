@@ -85,12 +85,18 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         else: 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @swagger_auto_schema(
+        operation_description = "Hard delete user (note that option for soft_delete exists)."      
+    ) 
     def destroy(self, request, *args, **kwargs):
         if not request.user.is_staff:
             return Response(status=status.HTTP_403_FORBIDDEN)
         else: 
             return super().destroy(self.request, *args, **kwargs)
 
+    @swagger_auto_schema(
+        operation_description="Soft delete user"       
+    ) 
     @action(
             detail=True)
     def soft_delete(self, request, **kwargs):

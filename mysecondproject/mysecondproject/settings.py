@@ -12,10 +12,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import environ, os
 
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -89,14 +94,30 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": env('DJANGO_LOG_FILE'),
+            "level": env('DJANGO_LOG_LEVEL'),
+            "formatter": "simple"
+        },
         "console": {
             "class": "logging.StreamHandler",
-        },
+            "level": env('DJANGO_LOG_LEVEL'), #NOT WRITING EVERYTHING TO TERMINAL
+            "formatter": "simple"
+        }
     },
-    "root": {
-        "handlers": ["console"],
-        "level": "DEBUG",
-    },
+    "loggers": {
+        "": { #catch all empty string, we want all log output to be sent to this logger 
+            "level": env('DJANGO_LOG_FILE'),
+            "handlers": ["file", "console"]
+        }
+    }, 
+    "formatters": {
+        "simple": {
+            "format": " {asctime}: {levelname} in {module}: {message}",
+            "style": "{"
+        }
+    }
 }
 
 MIDDLEWARE = [

@@ -11,9 +11,12 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 - Soft delete using DELETE api (now we have hard delete)
     - implement for the user module
 - Use permission and groups to implement more fine grained control access
+    - I have started a custom permission thing in permissions.py, but overriding the get_queryset method often seems like a better idea when I want different access to different users on the same endpoint. 
+    - custom permission is better to control the permission to the *entire* view or viewset. 
 - Logging of some sort 
 - Search API
 - restrict the categories APIs somehow (non-admins should not be able to add categories)
+- sometimes the passwords are not hashed (?)
 
 ## To do list :memo:
 This is just a list of ideas. Might not be updated. Kind of a braindump. 

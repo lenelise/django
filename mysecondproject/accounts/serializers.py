@@ -17,5 +17,6 @@ class CustomUserPostSerializer(serializers.ModelSerializer):
         fields = [
             'username', 
             'password', 
-            'user_permissions', 
-            'groups']
+            'first_name', 
+            'last_name',
+            'date_of_birth']

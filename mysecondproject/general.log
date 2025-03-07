@@ -1,0 +1,66 @@
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+Watching for file changes with StatReloader
+Entering GET income
+GET income: no pk given
+Entering GET income
+GET income: no pk given
+Entering GET income
+GET income: no pk given
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+Watching for file changes with StatReloader
+Entering GET income
+GET income: pk given
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+INFO Watching for file changes with StatReloader
+INFO Entering GET income
+INFO GET income: pk given
+INFO Entering GET income
+INFO GET income: pk given
+INFO Entering GET income
+INFO GET income: no pk given
+INFO C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 10:41:14,400 INFO autoreload Watching for file changes with StatReloader
+ 2025-03-07 10:41:17,138 INFO autoreload C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 10:41:18,123 INFO autoreload Watching for file changes with StatReloader
+ 2025-03-07 10:41:23,411 INFO incomeview Entering GET income
+ 2025-03-07 10:41:23,411 INFO incomeview GET income: no pk given
+ 2025-03-07 10:42:53,995 INFO autoreload C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 10:42:55,389: INFO in autoreload: Watching for file changes with StatReloader
+ 2025-03-07 10:43:05,767: INFO in incomeview: Entering GET income
+ 2025-03-07 10:43:05,767: INFO in incomeview: GET income: no pk given
+ 2025-03-07 10:43:34,000: INFO in incomeview: Entering GET income
+ 2025-03-07 10:43:34,000: INFO in incomeview: GET income: no pk given
+ 2025-03-07 10:43:41,833: WARNING in log: Not Found: /api/9
+ 2025-03-07 10:43:57,059: INFO in autoreload: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\incomeview.py changed, reloading.
+ 2025-03-07 10:43:58,345: INFO in autoreload: Watching for file changes with StatReloader
+ 2025-03-07 10:44:02,533: WARNING in log: Not Found: /api/3
+ 2025-03-07 10:44:06,699: INFO in incomeview: Entering GET income
+ 2025-03-07 10:44:06,700: INFO in incomeview: GET income: no pk given
+ 2025-03-07 10:44:09,482: INFO in incomeview: Entering GET income
+ 2025-03-07 10:44:09,483: ERROR in incomeview: GET income: pk given
+ 2025-03-07 10:45:22,525: INFO in autoreload: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 10:46:13,039: INFO in autoreload: Watching for file changes with StatReloader
+ 2025-03-07 10:46:18,105: INFO in incomeview: Entering GET income
+ 2025-03-07 10:46:18,106: ERROR in incomeview: GET income: pk given
+ 2025-03-07 10:46:19,649: INFO in incomeview: Entering GET income
+ 2025-03-07 10:46:19,650: INFO in incomeview: GET income: no pk given
+ 2025-03-07 11:01:57,357: INFO in autoreload: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.

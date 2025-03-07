@@ -11,6 +11,10 @@ from drf_yasg import openapi
 from expensetracker.models import Expense
 from expensetracker.serializers import ExpenseGetSerializer, ExpensePostSerializer
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class ExpenseViewSet(viewsets.ModelViewSet):
     '''
         GET: non staff users can see own expenses, admin users can see all. 
@@ -74,6 +78,7 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             try:
                 expense = Expense.objects.get(pk=pk, owner = request.user)
             except Expense.DoesNotExist:
+                logger.error("GET api/expense does not exist")
                 raise NotFound(detail="Task not found, or has other owner")
             serializer =  ExpenseGetSerializer(expense, context={"request": request})
         else: 
