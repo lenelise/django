@@ -107,14 +107,15 @@ LOGGING = {
         }
     },
     "loggers": {
-        "": { #catch all empty string, we want all log output to be sent to this logger 
-            "level": env('DJANGO_LOG_FILE'),
+        '': { #catch all empty string, we want all log output to be sent to this logger 
+            "level": env('DJANGO_LOG_LEVEL'),
+            "level": "DEBUG",
             "handlers": ["file", "console"]
         }
     }, 
     "formatters": {
         "simple": {
-            "format": " {asctime}: {levelname} in {module}: {message}",
+            "format": " {asctime}: {levelname} in {module} line {lineno}: {message}",
             "style": "{"
         }
     }

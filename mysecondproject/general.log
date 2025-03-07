@@ -64,3 +64,39 @@ INFO C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangopr
  2025-03-07 10:46:19,649: INFO in incomeview: Entering GET income
  2025-03-07 10:46:19,650: INFO in incomeview: GET income: no pk given
  2025-03-07 11:01:57,357: INFO in autoreload: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 14:44:21,025: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:44:21,026: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:44:37,443: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:44:37,444: ERROR in incomeview line 88: GET income: pk given
+ 2025-03-07 14:44:52,292: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:44:52,293: ERROR in incomeview line 88: GET income: pk given
+ 2025-03-07 14:45:16,906: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:45:16,907: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:46:24,218: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-07 14:46:27,812: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:46:27,812: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:46:37,559: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:46:37,559: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:46:41,634: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:46:41,635: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:46:53,182: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-07 14:46:54,459: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-07 14:47:37,762: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:47:37,763: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:01,475: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-07 14:48:07,582: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:07,583: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:24,984: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:24,985: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:28,366: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:28,367: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:29,384: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:29,385: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:30,316: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:30,317: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:45,056: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:45,057: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:48,966: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:48,967: INFO in incomeview line 82: GET income: no pk given
+ 2025-03-07 14:48:58,740: INFO in incomeview line 77: Entering GET api/income
+ 2025-03-07 14:48:58,741: ERROR in incomeview line 88: GET income: pk given

@@ -74,7 +74,7 @@ class IncomeView(APIView):
 
     @swagger_auto_schema(operation_description="Fetch all income data ." ) 
     def get(self, request, **kwargs): 
-        logger.info("Entering GET income")
+        logger.info("Entering GET api/income")
         pk = kwargs.get('pk', None)
 
         if pk is None: 
