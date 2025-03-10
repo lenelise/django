@@ -48,3 +48,80 @@
  2025-03-10 08:00:43,375: WARNING in log line 248: Not Found: /favicon.ico
  2025-03-10 08:02:08,371: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\expensetracker\views.py changed, reloading.
  2025-03-10 08:02:09,011: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:10:44,551: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\expensetracker\views.py changed, reloading.
+ 2025-03-10 08:10:45,289: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:10:49,179: DEBUG in views line 14: home.html rendered
+ 2025-03-10 08:10:51,160: DEBUG in views line 14: home.html rendered
+ 2025-03-10 08:12:40,086: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:12:40,729: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:13:31,830: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:13:32,395: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:13:59,128: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:13:59,721: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:14:49,756: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:14:50,360: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:15:18,114: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:15:18,750: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:15:20,865: INFO in expenseviewset line 86: GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:16:38,994: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:16:39,618: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:16:48,025: INFO in expenseviewset line 86:  HEI GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:17:01,401: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:17:02,014: INFO in autoreload line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:17:25,925: WARNING in log line 248: Not Found: /api/expenses/4/
+ 2025-03-10 08:17:39,782: WARNING in log line 248: Not Found: /api/expenses/4/
+ 2025-03-10 08:17:41,092: WARNING in log line 248: Not Found: /api/expenses/4/
+ 2025-03-10 08:24:07,533: INFO in autoreload line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-10 08:24:08,212: INFO | autoreload | line 668: Watching for file changes with StatReloader
+ 2025-03-10 08:24:18,752: INFO | expenseviewset | line 86: GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:24:32,178: INFO | autoreload | line 266: C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-10 08:24:32,875: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:24:39,142: INFO | expenseviewset | line 86| GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:24:53,390: ERROR | log | line 248| Internal Server Error: /api/expenses/18/
+Traceback (most recent call last):
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py", line 108, in update
+    logger.info(f"PUT api/expense called by userid {self.request.user.id} with expenseid {pk}")
+                                                                                          ^^
+UnboundLocalError: cannot access local variable 'pk' where it is not associated with a value
+ 2025-03-10 08:25:27,102: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:25:27,769: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:25:35,953: INFO | expenseviewset | line 108| PUT api/expense called by userid 9
+ 2025-03-10 08:25:40,935: INFO | expenseviewset | line 108| PUT api/expense called by userid 9
+ 2025-03-10 08:26:02,760: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\expenseviewset.py changed, reloading.
+ 2025-03-10 08:26:03,429: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:26:07,430: INFO | expenseviewset | line 109| PUT api/expense called by userid 9 with expenseid 18
+ 2025-03-10 08:26:15,186: INFO | expenseviewset | line 109| PUT api/expense called by userid 9 with expenseid 18
+ 2025-03-10 08:26:25,337: INFO | expenseviewset | line 86| GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:26:28,775: WARNING | log | line 248| Not Found: /api/expenses/income/
+ 2025-03-10 08:26:38,164: INFO | incomeview | line 72| GET api/income called by userid 9 with no income id given
+ 2025-03-10 08:27:20,422: WARNING | log | line 248| Not Found: /api/export
+ 2025-03-10 08:27:44,780: INFO | expenseviewset | line 86| GET api/expenses called by userid 9 with no expense_id
+ 2025-03-10 08:27:53,654: WARNING | log | line 248| Not Found: /api/export/
+ 2025-03-10 08:28:48,323: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\exportview.py changed, reloading.
+ 2025-03-10 08:28:48,984: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:30:57,454: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\exportview.py changed, reloading.
+ 2025-03-10 08:30:58,136: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:31:00,183: WARNING | log | line 248| Not Found: /api/export/
+ 2025-03-10 08:31:10,021: INFO | exportview | line 35| api/fileexport/expenses called by userid 9
+ 2025-03-10 08:31:55,529: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\exportview.py changed, reloading.
+ 2025-03-10 08:31:56,210: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:32:00,693: INFO | exportview | line 35| api/fileexport/?type=expenses called by userid 9
+ 2025-03-10 08:32:00,696: INFO | exportview | line 78| fileexport completed

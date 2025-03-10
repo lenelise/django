@@ -13,7 +13,6 @@ The code includes a lot of explanotary comments. It's because I am still learnin
 - Use permission and groups to implement more fine grained control access
     - I have started a custom permission thing in permissions.py, but overriding the get_queryset method often seems like a better idea when I want different access to different users on the same endpoint. 
     - custom permission is better to control the permission to the *entire* view or viewset. 
-- Logging of some sort 
 - Search API
 - restrict the categories APIs somehow (non-admins should not be able to add categories)
 - sometimes the passwords are not hashed (?)
@@ -31,6 +30,7 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 - download your expenses as csv 
     - filter on month/year/other 
 - I guess I need to add some front end stuff at some point :alien:
+- Logging of some sort: added for expenses, income and export, not users. 
 
 ## API's and restrictions:
 All API's can be found on `base_url/swagger`. Be aware of the fact that we have not done much to customize this page (yet). The documentation is made using [Yet another swagger generator.](https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart)

@@ -35,38 +35,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-#Not sure that this logging thing does anything, or if I just dont know how to use it: 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": env('DJANGO_LOG_FILE'),
-            "level": env('DJANGO_LOG_LEVEL'),
-            "formatter": "simple"
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": env('DJANGO_LOG_LEVEL'), #NOT WRITING EVERYTHING TO TERMINAL
-            "formatter": "simple"
-        }
-    },
-    "loggers": {
-        '': { #catch all empty string, we want all log output to be sent to this logger 
-            "level": env('DJANGO_LOG_LEVEL'),
-            "level": "DEBUG",
-            "handlers": ["file", "console"]
-        }
-    }, 
-    "formatters": {
-        "simple": {
-            "format": " {asctime}: {levelname} in {module} line {lineno}: {message}",
-            "style": "{"
-        }
-    }
-}
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -212,3 +180,36 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 LOGOUT_REDIRECT_URL = "home" 
+
+
+#Not sure that this logging thing does anything, or if I just dont know how to use it: 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": env('DJANGO_LOG_FILE'),
+            "level": env('DJANGO_LOG_LEVEL'),
+            "formatter": "simple"
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": env('DJANGO_LOG_LEVEL'), #NOT WRITING EVERYTHING TO TERMINAL
+            "formatter": "simple"
+        }
+    },
+    "loggers": {
+        '': { #catch all empty string, we want all log output to be sent to this logger 
+            "level": env('DJANGO_LOG_LEVEL'),
+            "level": "DEBUG",
+            "handlers": ["file", "console"]
+        }
+    }, 
+    "formatters": {
+        "simple": {
+            "format": " {asctime}: {levelname} | {module} | line {lineno}| {message}",
+            "style": "{"
+        }
+    }
+}

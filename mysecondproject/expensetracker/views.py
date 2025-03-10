@@ -6,8 +6,10 @@ import logging
 
 # Create your views here.
 
-class HomeView(View):
-    
+
+logger = logging.getLogger(__name__)
+
+class HomeView(View):    
     def get(self, request):
-        #return HttpResponse("This will be the landing page.")
+        logger.debug("home.html rendered")
         return render(request, "home.html")

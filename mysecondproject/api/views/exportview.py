@@ -11,11 +11,13 @@ from .customuserviewset import CustomUserViewSet
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
-import csv
+import csv, logging
+logger = logging.getLogger(__name__)
+
 
 class ExportView(APIView):
     permission_classes = [IsAuthenticated] 
-    
+
     @swagger_auto_schema(
         operation_description="Export data as csv.",
         manual_parameters=[
@@ -30,6 +32,7 @@ class ExportView(APIView):
     )
     def get(self, request):
         type = request.query_params.get("type") #expense eller user
+        logger.info(f"api/fileexport/?type={type} called by userid {self.request.user.id}")
 
         if type == "expenses": 
             return self.export_expenses(request)
@@ -47,7 +50,6 @@ class ExportView(APIView):
         response["Content-Disposition"] = 'attachment; filename="expenses.csv"' #tells the browser that it should download a file, not display a page
 
         fieldnames = ["url", "title", "content", "price", "date", "owner"]
-        
         return self.write_to_csv(fieldnames=fieldnames, data = data, response = response)
 
         
@@ -73,6 +75,7 @@ class ExportView(APIView):
             for field in fieldnames: 
                 cleaned_row[field] = getattr(row, field, "") #get attribute "field" from object "row" (expense or customuser object)
             writer.writerow(cleaned_row)
+        logger.info("fileexport completed")
         return response
         
         

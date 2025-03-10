@@ -76,12 +76,14 @@ class ExpenseViewSet(viewsets.ModelViewSet):
 
         if pk: 
             try:
+                logger.info(f"GET api/expenses called by userid {self.request.user.id} with expense_id {pk}")
                 expense = Expense.objects.get(pk=pk, owner = request.user)
             except Expense.DoesNotExist:
-                logger.error("GET api/expense does not exist")
+                logger.error("GET api/expense: expense do not exist")
                 raise NotFound(detail="Task not found, or has other owner")
             serializer =  ExpenseGetSerializer(expense, context={"request": request})
         else: 
+            logger.info(f"GET api/expenses called by userid {self.request.user.id} with no expense_id")
             expenses = self.get_queryset()
             serializer = ExpenseGetSerializer(expenses, many=True, context={"request": request})
         return Response(serializer.data)
@@ -93,25 +95,29 @@ class ExpenseViewSet(viewsets.ModelViewSet):
         serializer = ExpensePostSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save(owner=request.user)
+            logger.info(f"POST api/expenses called by userid {self.request.user.id}: success")
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
+            logger.error(f"POST api/expenses called by userid {self.request.user.id} but was bad")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @swagger_auto_schema(
         operation_description="Update existing expense data."        
     )    
     def update(self, request, *args, **kwargs):
-
         pk = kwargs.get('pk', None) #if no pk is given it defaults to None
+        logger.info(f"PUT api/expense called by userid {self.request.user.id} with expenseid {pk}")
 
         # If no pk given we throw an error:
         if not pk: 
+            logger.warning("PUT api/expense: primary key not given.")
             return Response({"detail": "Primary key is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         #you can only edit your own expense:
         try:
             expense = Expense.objects.get(pk=pk, owner = request.user)
         except Expense.DoesNotExist:
+            logger.error(f"PUT api/expense: task with id {pk} not found.")
             raise NotFound(detail="Task not found, or has other owner")
         
         #the actual editing: 
@@ -120,15 +126,18 @@ class ExpenseViewSet(viewsets.ModelViewSet):
             serializer.save()
             return Response(serializer.data)
         else: 
+            logger.warning("POST api/expense: serializer not valid.")
             return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
            
     @swagger_auto_schema(
             operation_description="Remove an expense."        
     )
     def destroy(self, *args, **kwargs):
+        logger.info(f"DELETE api/expense called by userid {self.request.user.id}")
         if self.request.user.is_staff: 
             return super().destroy(self.request,*args, **kwargs)
         else: 
+            logger.warning("DELETE api/expense: non admin user tried to delete.")
             return Response("This action is not allowed for non-staff users", status=status.HTTP_403_FORBIDDEN)
 
 
