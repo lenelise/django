@@ -1,12 +1,18 @@
 from rest_framework import serializers
-from .models import Expense, ExpenseCategory, Income
+from .models import Expense, ExpenseCategory, Income, Budget
 
-
-class ExpenseGetSerializer(serializers.HyperlinkedModelSerializer): 
+# class ExpenseGetSerializer(serializers.HyperlinkedModelSerializer): 
+class ExpenseGetSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Expense
         fields = '__all__'
+        # fields = []
 
+class BudgetSerializer(serializers.ModelSerializer):
+    expenses = ExpenseGetSerializer(many=True, read_only=True)
+    class Meta: 
+        model = Budget
+        fields = ['title', 'note', 'owner', 'expenses']
 
 class ExpensePostSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,3 +51,4 @@ class IncomePostSerializer(serializers.ModelSerializer):
             )
         else: 
             return price
+        

@@ -11,7 +11,8 @@ class Expense(models.Model):
     owner = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE) #we dont want to keep the expense if the owner is deleted
     date = models.DateField()
     category = models.ForeignKey('ExpenseCategory', on_delete=models.SET_NULL, null=True) #we want to keep the expense if the category is deleted
-    
+    budget = models.ForeignKey('Budget',on_delete=models.SET_NULL, null=True, related_name="expenses")
+
     def __str__(self): 
         return str(self.title) + ": " + str(self.price) + '.'
     
@@ -27,6 +28,16 @@ class Income(models.Model):
     price = models.IntegerField(validators=[MinValueValidator(0)])
     owner = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE) #we dont want to keep the expense if the owner is deleted
     date = models.DateField()
+    budget = models.ForeignKey('Budget',on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return str(self.title) + ":" + str(self.price) + "."
+    
+
+class Budget(models.Model):
+    title = models.CharField(max_length=30)
+    note  = models.TextField(blank=True) #optional to fill this out
+    owner = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE) #we dont want to keep the expense if the owner is deleted
+
+    def __str__(self): 
+        return str(self.title)

@@ -9,6 +9,7 @@ from api.views.customuserviewset import CustomUserViewSet
 from api.views.exportview import ExportView
 from api.views.categoryview import ExpenseCategoryView
 from api.views.incomeview import IncomeView
+from api.views.budgetview import BudgetView
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -48,9 +49,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')), #login/out option in browsable API UI
     path('api/fileexport/', ExportView.as_view(), name='file-export'), 
     path('api/categories/', ExpenseCategoryView.as_view(), name='categories'),
+    path('api/budget/', BudgetView.as_view(), name='bugdet'),
     path('api/incomes/', IncomeView.as_view(), name='income'),
     path('api/incomes/<int:pk>', IncomeView.as_view(), name='income'),
-
 
     #JWT authentication:
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
