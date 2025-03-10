@@ -125,3 +125,12 @@ UnboundLocalError: cannot access local variable 'pk' where it is not associated 
  2025-03-10 08:31:56,210: INFO | autoreload | line 668| Watching for file changes with StatReloader
  2025-03-10 08:32:00,693: INFO | exportview | line 35| api/fileexport/?type=expenses called by userid 9
  2025-03-10 08:32:00,696: INFO | exportview | line 78| fileexport completed
+ 2025-03-10 08:39:02,179: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\customuserviewset.py changed, reloading.
+ 2025-03-10 08:39:02,831: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:39:40,525: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\customuserviewset.py changed, reloading.
+ 2025-03-10 08:39:41,129: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:40:42,089: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\customuserviewset.py changed, reloading.
+ 2025-03-10 08:40:42,694: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:41:09,499: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\customuserviewset.py changed, reloading.
+ 2025-03-10 08:41:10,144: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 08:41:17,812: INFO | customuserviewset | line 75| GET api/users called by userid 9 with no userid

@@ -30,7 +30,6 @@ This is just a list of ideas. Might not be updated. Kind of a braindump.
 - download your expenses as csv 
     - filter on month/year/other 
 - I guess I need to add some front end stuff at some point :alien:
-- Logging of some sort: added for expenses, income and export, not users. 
 
 ## API's and restrictions:
 All API's can be found on `base_url/swagger`. Be aware of the fact that we have not done much to customize this page (yet). The documentation is made using [Yet another swagger generator.](https://drf-yasg.readthedocs.io/en/stable/readme.html#quickstart)
@@ -68,6 +67,8 @@ According to this [stackoverflow](https://stackoverflow.com/questions/46916128/h
 
 ## Things I've done :bowtie: 
 These are items moved from the to do list because they have been implemented and I believe they are working. 
+
+:white_check_mark: Basic logging for all API endpoints. 
 
 :white_check_mark: Added default throttle policy. 
 

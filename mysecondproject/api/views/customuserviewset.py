@@ -13,6 +13,10 @@ from api.filters import CustomUserFilter
 from accounts.models import CustomUser
 from accounts.serializers import CustomUserSerializer, CustomUserPostSerializer
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class CustomUserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
@@ -61,11 +65,14 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
         if pk: 
             try:
+                logger.info(f"GET api/users called by userid {self.request.user.id} with userid {pk}")
                 user = CustomUser.objects.get(pk=pk)
             except CustomUser.DoesNotExist:
+                logger.warning(f"GET api/users user not found.")
                 raise NotFound(detail="User not found, or has other owner")
             serializer =  CustomUserSerializer(user, context={"request": request})
         else: 
+            logger.info(f"GET api/users called by userid {self.request.user.id} with no userid")
             users = self.get_queryset()
             serializer = CustomUserSerializer(users, many=True, context={"request": request})
 
@@ -75,6 +82,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         operation_description="Create users. Only available for admin users."        
     )    
     def create(self, request, *args, **kwargs):
+        logger.info(f"POST api/user is called by {self.request.user.id}")
         serializer = CustomUserPostSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             if self.request.user.is_staff:
@@ -89,6 +97,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         operation_description = "Hard delete user (note that option for soft_delete exists)."      
     ) 
     def destroy(self, request, *args, **kwargs):
+        logger.info(f"DELETE api/users called by userid {self.request.user.id}")
         if not request.user.is_staff:
             return Response(status=status.HTTP_403_FORBIDDEN)
         else: 
@@ -100,7 +109,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     @action(detail=True) #detail=True means the action is done on one object, not all. Primary key is required. 
     def soft_delete(self, request, **kwargs):
         pk = kwargs.get('pk', None) #get the pk if it is given, if not set to None
-
+        logger.info(f"api/users/soft-delete called by userid {self.request.user.id} with userid {pk}")
         if pk is None: 
             return Response(status=status.HTTP_400_BAD_REQUEST)
         else: 
