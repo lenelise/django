@@ -97,8 +97,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     @swagger_auto_schema(
         operation_description="Soft delete user"       
     ) 
-    @action(
-            detail=True)
+    @action(detail=True) #detail=True means the action is done on one object, not all. Primary key is required. 
     def soft_delete(self, request, **kwargs):
         pk = kwargs.get('pk', None) #get the pk if it is given, if not set to None
 
@@ -108,7 +107,7 @@ class CustomUserViewSet(viewsets.ModelViewSet):
             user = CustomUser.objects.get(pk=pk)
             user.is_deleted = True
             user.is_active = False
-            # user.groups = [] #remove all permissions given via groups
-            # user.user_permissions = [] #remove all permissions
-            user.save() #save changes
+            user.groups = [] #remove all permissions given via groups
+            user.user_permissions = [] #remove all permissions
+            user.save() 
             return Response(status=status.HTTP_200_OK)

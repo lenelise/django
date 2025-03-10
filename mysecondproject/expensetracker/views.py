@@ -10,6 +10,4 @@ class HomeView(View):
     
     def get(self, request):
         #return HttpResponse("This will be the landing page.")
-        logger = logging.getLogger(__name__)
-        logger.warning("very bad indeed")
         return render(request, "home.html")

@@ -64,8 +64,7 @@ class ExportView(APIView):
         return self.write_to_csv(fieldnames=fieldnames, data = data, response = response)
     
     def write_to_csv(self, fieldnames, data, response):
-        '''
-            method to write the actual csv of the export
+        '''Method to write the actual csv of the export
         '''
         writer = csv.DictWriter(response, fieldnames=fieldnames)
         writer.writeheader()

@@ -1,23 +1,16 @@
-from rest_framework.views import APIView
 from expensetracker.models import Income
 from expensetracker.serializers import IncomeGetSerializer,IncomePostSerializer
-from rest_framework.response import Response
-from django.db.models import Q
+
 from rest_framework.exceptions import NotFound
-
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework import permissions, status
 
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
+from django.db.models import Q
 import logging
-
-'''
-Note to self: Using the class based view approach, we will have one class for each API endpoint. 
-Core difference from ViewSets where you have one class per model, and then one class method
-for each endpoint. 
-'''
 
 logger = logging.getLogger(__name__)
 
@@ -41,9 +34,8 @@ logger = logging.getLogger(__name__)
     ]        
 )
 class IncomeView(APIView):
-    '''
-        non admins should see own income. 
-        admins should see all. 
+    ''' CRUD APIs for the Income model. 
+        Same permission rules as for the Expense model. 
     '''
     permission_classes = [permissions.IsAuthenticated]
 
@@ -74,47 +66,51 @@ class IncomeView(APIView):
 
     @swagger_auto_schema(operation_description="Fetch all income data ." ) 
     def get(self, request, **kwargs): 
-        logger.info("Entering GET api/income")
         pk = kwargs.get('pk', None)
 
         if pk is None: 
-            # incomes = Income.objects.all()
-            logger.info("GET income: no pk given")
+            logger.info(f"GET api/income called by userid {self.request.user.id} with no income id given")
             incomes = self.get_queryset()
             serializer = IncomeGetSerializer(incomes, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         else: 
-            logger.error("GET income: pk given")
+            logger.info(f"GET api/income called by userid {self.request.user.id} with income_id {pk}")
             income = Income.objects.get(pk=pk)
             serializer = IncomeGetSerializer(income)
             return Response(serializer.data, status=status.HTTP_200_OK)
     
     @swagger_auto_schema(operation_description="Post new category data." ) 
     def post(self, request): 
+        logger.info(f"POST api/income called by userid {self.request.user.id}.")
         serializer = IncomePostSerializer(data=request.data, many=True)
         if serializer.is_valid():
             serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else: 
+            logger.warning("POST api/income, serializer not valid.")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     def put(self, request, **kwargs):
+        logger.info(f"PUT api/income called by userid {self.request.user.id} with income_id {pk}")
         pk = kwargs.get('pk', None)
 
-        if not pk: 
+        if not pk:
+            logger.warning("PUT api/income: primary key not given.")
             return Response({"detail": "Primary key is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         #you can only edit your own expense:
         try:
             income = Income.objects.get(pk=pk, owner = request.user)
         except Income.DoesNotExist:
+            logger.error(f"PUT api/income: task with id {pk} not found.")
             raise NotFound(detail="Task not found, or has other owner")
         serializer =  IncomePostSerializer(income, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         else: 
+            logger.warning("POST api/income: serializer not valid.")
             return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
            
 
@@ -122,8 +118,10 @@ class IncomeView(APIView):
             operation_description="Remove an income."        
     )
     def delete(self, *args, **kwargs):
+        logger.info(f"DELETE api/income called by userid {self.request.user.id}")
         if self.request.user.is_staff: 
             return super().destroy(self.request,*args, **kwargs)
         else: 
+            logger.warning("DELETE api/income: non admin user tried to delete.")
             return Response("This action is not allowed for non-staff users", status=status.HTTP_403_FORBIDDEN)
 

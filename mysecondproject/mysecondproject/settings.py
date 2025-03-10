@@ -19,8 +19,10 @@ env = environ.Env(
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-environ.Env.read_env(BASE_DIR / '.env')
+BASE_DIR = Path(__file__).resolve().parent.parent #the top mysecondproject directory
+ENV_PATH = BASE_DIR / ".env"
+environ.Env.read_env(ENV_PATH)  # Read the .env file
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -33,6 +35,37 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Not sure that this logging thing does anything, or if I just dont know how to use it: 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": env('DJANGO_LOG_FILE'),
+            "level": env('DJANGO_LOG_LEVEL'),
+            "formatter": "simple"
+        },
+        "console": {
+            "class": "logging.StreamHandler",
+            "level": env('DJANGO_LOG_LEVEL'), #NOT WRITING EVERYTHING TO TERMINAL
+            "formatter": "simple"
+        }
+    },
+    "loggers": {
+        '': { #catch all empty string, we want all log output to be sent to this logger 
+            "level": env('DJANGO_LOG_LEVEL'),
+            "level": "DEBUG",
+            "handlers": ["file", "console"]
+        }
+    }, 
+    "formatters": {
+        "simple": {
+            "format": " {asctime}: {levelname} in {module} line {lineno}: {message}",
+            "style": "{"
+        }
+    }
+}
 
 # Application definition
 
@@ -87,38 +120,6 @@ SWAGGER_SETTINGS = {
     'DEFAULT_MODEL_RENDERING': 'model',
     'USE_SESSION_AUTH': False, #Disable django login as authentication
     'SUPPORTED_SUBMIT_METHODS': [], #disables "Try it out"
-}
-
-#Not sure that this logging thing does anything, or if I just dont know how to use it: 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": env('DJANGO_LOG_FILE'),
-            "level": env('DJANGO_LOG_LEVEL'),
-            "formatter": "simple"
-        },
-        "console": {
-            "class": "logging.StreamHandler",
-            "level": env('DJANGO_LOG_LEVEL'), #NOT WRITING EVERYTHING TO TERMINAL
-            "formatter": "simple"
-        }
-    },
-    "loggers": {
-        '': { #catch all empty string, we want all log output to be sent to this logger 
-            "level": env('DJANGO_LOG_LEVEL'),
-            "level": "DEBUG",
-            "handlers": ["file", "console"]
-        }
-    }, 
-    "formatters": {
-        "simple": {
-            "format": " {asctime}: {levelname} in {module} line {lineno}: {message}",
-            "style": "{"
-        }
-    }
 }
 
 MIDDLEWARE = [
