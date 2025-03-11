@@ -626,3 +626,134 @@ AssertionError: The field 'expenses' was declared on serializer BudgetSerializer
  2025-03-10 09:28:36,002: INFO | autoreload | line 668| Watching for file changes with StatReloader
  2025-03-10 09:28:54,895: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\expensetracker\serializers.py changed, reloading.
  2025-03-10 09:28:55,672: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 09:31:04,748: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\expensetracker\serializers.py changed, reloading.
+ 2025-03-10 09:31:05,470: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 09:31:07,349: ERROR | log | line 248| Internal Server Error: /api/budget/
+Traceback (most recent call last):
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\budgetview.py", line 20, in get
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 714, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 714, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\relations.py", line 373, in to_representation
+    assert 'request' in self.context, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: `HyperlinkedIdentityField` requires the request in the serializer context. Add `context={'request': request}` when instantiating the serializer.
+ 2025-03-10 09:31:50,369: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\budgetview.py changed, reloading.
+ 2025-03-10 09:31:51,054: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 09:31:51,853: ERROR | log | line 248| Internal Server Error: /api/budget/
+Traceback (most recent call last):
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\relations.py", line 396, in to_representation
+    url = self.get_url(value, self.view_name, request, format)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\relations.py", line 334, in get_url
+    return self.reverse(view_name, kwargs=kwargs, request=request, format=format)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\reverse.py", line 47, in reverse
+    url = _reverse(viewname, args, kwargs, request, format, **extra)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\reverse.py", line 60, in _reverse
+    url = django_reverse(viewname, args=args, kwargs=kwargs, **extra)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'expensecategory-detail' not found. 'expensecategory-detail' is not a valid view function or pattern name.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\budgetview.py", line 20, in get
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 714, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 714, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\.venv\Lib\site-packages\rest_framework\relations.py", line 411, in to_representation
+    raise ImproperlyConfigured(msg % self.view_name)
+django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlinked relationship using view name "expensecategory-detail". You may have failed to include the related model in your API, or incorrectly configured the `lookup_field` attribute on this field.
+ 2025-03-10 09:32:56,352: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\expensetracker\serializers.py changed, reloading.
+ 2025-03-10 09:32:57,022: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 09:33:04,579: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\api\views\budgetview.py changed, reloading.
+ 2025-03-10 09:33:05,337: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-10 09:41:04,136: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-11 10:54:59,095: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-11 10:55:16,490: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-11 10:55:17,122: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-11 10:55:24,737: DEBUG | views | line 14| home.html rendered
+ 2025-03-11 10:55:25,051: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-11 10:55:36,414: DEBUG | views | line 14| home.html rendered
+ 2025-03-11 10:55:36,493: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-11 10:55:36,503: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-11 10:55:42,997: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-11 10:56:08,949: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-11 10:56:09,537: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-11 10:59:30,266: INFO | autoreload | line 266| C:\Users\Lene-LiseDaniloff\OneDrive - Unicus Holding AS\Dokumenter\djangoprosjekter\mysecondproject\mysecondproject\mysecondproject\settings.py changed, reloading.
+ 2025-03-11 10:59:30,848: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-11 15:18:40,030: INFO | autoreload | line 668| Watching for file changes with StatReloader

@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'drf_yasg',
     'rest_framework_simplejwt',
-    'django_filters'
+    'django_filters', 
+    # "django_cron"
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
@@ -89,6 +90,10 @@ SWAGGER_SETTINGS = {
     'USE_SESSION_AUTH': False, #Disable django login as authentication
     'SUPPORTED_SUBMIT_METHODS': [], #disables "Try it out"
 }
+
+# CRON_CLASSES = [
+#     "expensetracker.cron.MyFirstCronJob",
+# ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
