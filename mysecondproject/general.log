@@ -758,3 +758,6 @@ django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlink
  2025-03-11 10:59:30,848: INFO | autoreload | line 668| Watching for file changes with StatReloader
  2025-03-11 15:18:40,030: INFO | autoreload | line 668| Watching for file changes with StatReloader
  2025-03-12 15:01:41,174: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-13 08:32:08,221: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-13 08:32:12,012: DEBUG | views | line 14| home.html rendered
+ 2025-03-13 08:32:12,215: WARNING | log | line 248| Not Found: /favicon.ico

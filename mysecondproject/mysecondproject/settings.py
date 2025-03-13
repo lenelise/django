@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework_simplejwt',
     'django_filters', 
-    # "django_cron"
-]
+    'django_extensions']
 
 AUTH_USER_MODEL = "accounts.CustomUser" #we use a custom user model
 
