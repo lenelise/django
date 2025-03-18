@@ -761,3 +761,12 @@ django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlink
  2025-03-13 08:32:08,221: INFO | autoreload | line 668| Watching for file changes with StatReloader
  2025-03-13 08:32:12,012: DEBUG | views | line 14| home.html rendered
  2025-03-13 08:32:12,215: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-18 14:13:32,085: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-18 14:17:36,169: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-18 14:18:30,715: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-18 14:18:36,585: DEBUG | views | line 14| home.html rendered
+ 2025-03-18 14:18:36,998: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-18 14:18:41,288: DEBUG | core | line 226| Successfully imported extension module "markdown.extensions.toc".
+ 2025-03-18 14:18:41,289: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
+ 2025-03-18 14:18:46,092: DEBUG | core | line 226| Successfully imported extension module "markdown.extensions.toc".
+ 2025-03-18 14:18:46,093: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
