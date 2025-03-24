@@ -770,3 +770,12 @@ django.core.exceptions.ImproperlyConfigured: Could not resolve URL for hyperlink
  2025-03-18 14:18:41,289: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
  2025-03-18 14:18:46,092: DEBUG | core | line 226| Successfully imported extension module "markdown.extensions.toc".
  2025-03-18 14:18:46,093: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
+ 2025-03-24 07:43:32,250: INFO | autoreload | line 668| Watching for file changes with StatReloader
+ 2025-03-24 07:43:49,391: DEBUG | views | line 14| home.html rendered
+ 2025-03-24 07:43:49,720: WARNING | log | line 248| Not Found: /favicon.ico
+ 2025-03-24 07:43:57,938: WARNING | log | line 248| Unauthorized: /api/
+ 2025-03-24 07:44:07,431: DEBUG | core | line 226| Successfully imported extension module "markdown.extensions.toc".
+ 2025-03-24 07:44:07,432: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
+ 2025-03-24 07:44:13,241: INFO | customuserviewset | line 75| GET api/users called by userid 2 with no userid
+ 2025-03-24 07:44:13,307: DEBUG | core | line 226| Successfully imported extension module "markdown.extensions.toc".
+ 2025-03-24 07:44:13,308: DEBUG | core | line 182| Successfully loaded extension "markdown.extensions.toc.TocExtension".
